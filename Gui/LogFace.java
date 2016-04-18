@@ -1,18 +1,13 @@
 package Gui;
 
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JFrame;
+import java.awt.Cursor;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.WindowConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Cursor;
 import org.jdesktop.beansbinding.Binding;
 import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.BindingGroup;
@@ -20,15 +15,7 @@ import org.jdesktop.beansbinding.ELProperty;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 
-public class LogFace extends JFrame {
-
-	//Queuing queue;
-
-	// Constant Value
-	private final Color BLACK = new Color(0, 0, 0);
-	private final Color GREY = new Color(102, 102, 102);
-	private final Color PERIWINKLE_LIGHT = new Color(204, 204, 255);
-	private final Font FL_LIGHT = new Font("Footlight MT Light", 1, 36);
+public class LogFace extends SimpleFace {
 
 	// Declare Variable
 	private JButton signIn;
@@ -41,18 +28,13 @@ public class LogFace extends JFrame {
 	private BindingGroup bindingGroup;
 
 	public LogFace() {
-		setTitle("Log-In Page");
-		setLocationRelativeTo(null);
+		super("Log-in Page", 60);
 		addIcon();
 		addComponents();
 	}
 
-	private void addIcon() {
-		ImageIcon img = new ImageIcon("items/icon.jpg");
-		setIconImage(img.getImage());
-	}
-
-	private void addComponents() {
+	@Override
+	protected void addComponents() {
 
 		// Assign variables
 		bindingGroup = new BindingGroup();
@@ -63,9 +45,6 @@ public class LogFace extends JFrame {
 		signIn = new JButton();
 		txtUser = new JTextField();
 		txtPass = new JPasswordField();
-
- 		// Set Default Usage
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// Set Label
 		username.setText("Username");
@@ -135,5 +114,9 @@ public class LogFace extends JFrame {
 
 		bindingGroup.bind();
 		pack();
+	}
+
+	public JButton getButton() {
+		return signIn;
 	}
 }
