@@ -2,8 +2,6 @@ package Gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -81,12 +79,8 @@ public class LogFace extends JFrame {
 		signIn.setText("Sign in");
 		signIn.setBackground(GREY);
 		signIn.setForeground(PERIWINKLE_LIGHT);
-		signIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				signInActionPerformed(e);
-			}
-		});
 
+		// Set layout
 		Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE, this, ELProperty.create("${background}"), this, BeanProperty.create("background"));
 		bindingGroup.addBinding(binding);
 
@@ -141,29 +135,5 @@ public class LogFace extends JFrame {
 
 		bindingGroup.bind();
 		pack();
-	}
-
-	private void signInActionPerformed(ActionEvent e) {
-
-		alertMessage.setForeground(Color.RED);
-
-		if (txtUser.getText().equals("") || txtPass.getText().equals("")) {
-			alertMessage.setText("Please check your username and password");
-		} else {
-			/*int res = queue.checkLogin(txtUser.getText(), txtPass.getText());
-			switch (res) {
-				case -1:
-					alertMessage.setText("Wrong username");
-					break;
-				case 0:
-					alertMessage.setText("Wrong Password");
-					break;
-				case 1:
-					MainFrame.setUser(txtUser.getText());
-					queue.disConnectDb();
-					dispose();
-					new MainFrame().setVisible(true);
-			}*/
-		}
 	}
 }
