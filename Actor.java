@@ -27,7 +27,7 @@ public class Actor {
 	private static void signInActionPerformed(ActionEvent e) {
 
 		// Call method in model
-		if (/*checkLogin()*/true) {
+		if (/*checkLogin(login.getForm())*/true) {
 			mainPart();
 		}
 	}

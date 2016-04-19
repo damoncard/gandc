@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.WindowConstants;
 import org.jdesktop.beansbinding.Binding;
 import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.BindingGroup;
@@ -28,9 +29,7 @@ public class LogFace extends SimpleFace {
 	private BindingGroup bindingGroup;
 
 	public LogFace() {
-		super("Log-in Page", 60);
-		addIcon();
-		addComponents();
+		super("Log-in Page", WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	@Override
@@ -118,5 +117,9 @@ public class LogFace extends SimpleFace {
 
 	public JButton getButton() {
 		return signIn;
+	}
+
+	public String[] getForm() {
+		return new String[] {txtUser, txtPass};
 	}
 }
