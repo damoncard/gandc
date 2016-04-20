@@ -1,24 +1,24 @@
 package Gui;
 
-import java.awt.Cursor;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.Binding;
 import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.ELProperty;
-import org.jdesktop.beansbinding.BeanProperty;
-import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 
 public class LogFace extends SimpleFace {
 
 	// Declare Variable
+	private BindingGroup bindingGroup;
 	private JButton signIn;
 	private JLabel username;
 	private JLabel password;
@@ -26,10 +26,17 @@ public class LogFace extends SimpleFace {
 	private JLabel alertMessage;
 	private JPasswordField txtPass;
 	private JTextField txtUser;
-	private BindingGroup bindingGroup;
 
 	public LogFace() {
 		super("Log-in Page", WindowConstants.EXIT_ON_CLOSE);
+	}
+
+	public JButton getButton() {
+		return signIn;
+	}
+
+	public String[] getForm() {
+		return new String[] {txtUser.getText(), txtPass.getText()};
 	}
 
 	@Override
@@ -37,11 +44,11 @@ public class LogFace extends SimpleFace {
 
 		// Assign variables
 		bindingGroup = new BindingGroup();
+		signIn = new JButton();
 		alertMessage = new JLabel();
 		username = new JLabel();
 		password = new JLabel();
 		resName = new JLabel();
-		signIn = new JButton();
 		txtUser = new JTextField();
 		txtPass = new JPasswordField();
 
@@ -113,13 +120,5 @@ public class LogFace extends SimpleFace {
 
 		bindingGroup.bind();
 		pack();
-	}
-
-	public JButton getButton() {
-		return signIn;
-	}
-
-	public String[] getForm() {
-		return new String[] {txtUser, txtPass};
 	}
 }
