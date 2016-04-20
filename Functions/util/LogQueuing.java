@@ -15,8 +15,6 @@ public class LogQueuing extends Queuing{
         if (!user.isEmpty()) {
             if (String.valueOf(user.get("Pass")).equals(pass)) {
                 return true;
-            } else {
-                return false;
             }
         } else {
             return false;
