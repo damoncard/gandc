@@ -5,40 +5,43 @@ import java.awt.event.ActionEvent;
 
 public class Actor {
 
-	private static LogFace login;
-	private static MainFace main;
-	private static TableFace table;
+	// Gui Objects
+	private static LogFace logface;
+	private static MainFace mainface;
+	private static TableFace tableface;
+
+	// Function Objects
+	private static LogIn login;
 
 	public static void main (String [] args) {
-		login = new LogFace();
-		login.getButton().addActionListener(new ActionListener() {
+		logface = new LogFace();
+		logface.getButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				signInActionPerformed(e);
 			}
 		});
-		login.setVisible(true);
+		logface.setVisible(true);
 	}
 
 	private static void mainPart() {
-		main = new MainFace();
-		login.dispose();
-		main.setVisible(true);
+		mainface = new MainFace();
+		logface.dispose();
+		mainface.setVisible(true);
 	}
 
 	private static void checkTable() {
-		table = new TableFace();
-		table.getButton().addActionListener(new ActionListener() {
+		tableface = new TableFace();
+		tableface.getAddButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reserveTablePerformed(e);
 			}
-		})
-		table.setVisible(true)
+		});
+		tableface.setVisible(true);
 	}
 
 	private static void signInActionPerformed(ActionEvent e) {
-
-		// Call method in model
-		if (/*checkLogin(login.getForm())*/true) {
+		login = new LogIn();
+		if (login.checkLogin(logface.getForm())) {
 			mainPart();
 		}
 	}

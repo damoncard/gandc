@@ -10,7 +10,7 @@ package Functions;
  * @author Default141
  */
 public class LogIn {
-    public boolean loginCheck(String user,String pass){
+    public boolean checkLogIn(String[] user){
         
     /*    if(user.equals("databaseUserName") && pass.equals("databaseUserName")){
             return true;

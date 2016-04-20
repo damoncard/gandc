@@ -1,15 +1,14 @@
-
-package Functions.util;
+package Functions.utils;
 
 import java.util.HashMap;
 
-public class LogQueuing extends Queuing{
+public class DBFunctions extends connectDB{
     
-    public LogQueuing() {
+    public DBFunctions() {
         super();
     }
     
-    public boolean checkLogin(String id, String pass) {
+    public boolean checkUser(String id, String pass) {
         String sql = "SELECT * FROM R_ID WHERE Id = '" + id + "'";
         HashMap user = db.queryRow(sql);
         if (!user.isEmpty()) {
