@@ -9,17 +9,17 @@ public class LogQueuing extends Queuing{
         super();
     }
     
-    public int checkLogin(String id, String pass) {
+    public boolean checkLogin(String id, String pass) {
         String sql = "SELECT * FROM R_ID WHERE Id = '" + id + "'";
         HashMap user = db.queryRow(sql);
         if (!user.isEmpty()) {
             if (String.valueOf(user.get("Pass")).equals(pass)) {
-                return 1;
+                return true;
             } else {
-                return 0;
+                return false;
             }
         } else {
-            return -1;
+            return false;
         }
     }
 

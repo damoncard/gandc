@@ -21,4 +21,7 @@ public class Queuing {
     }
 }
 
+class Main {
+    //public static void main
+}
 
