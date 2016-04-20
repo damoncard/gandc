@@ -1,5 +1,6 @@
-package Functions;
+package Functions.util;
 
+import Functions.*;
 import edu.sit.cs.db.CSDbDelegate;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,9 +11,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
-public class Queuing {
+public class Queuing2 {
 
-    public Queuing() {
+    public Queuing2() {
         db = new CSDbDelegate("cs14sitkmutt.me", "3306", "CSC105_G5", "CSC105_G5", "CSC105_G5");
         System.out.println(db.connect());
     }
@@ -57,7 +58,7 @@ public class Queuing {
         for (HashMap table : tables) {
             if (Integer.parseInt(String.valueOf(table.get("available"))) == 1) {
                 tableId = Integer.parseInt(String.valueOf(table.get("tableID")));
-                CheckAvailable.setDateTimeReserve(dateTimeReserve);
+                //CheckAvailable.setDateTimeReserve(dateTimeReserve);
                 return tableId;
             }
         }
@@ -77,12 +78,12 @@ public class Queuing {
 
                 if (dateTimeReserve.getTime().before(minDate.getTime()) || dateTimeReserve.getTime().after(maxDate.getTime())) {
                     tableId = Integer.parseInt(String.valueOf(tables2.get("tableID")));
-                    CheckAvailable.setDateTimeReserve(dateTimeReserve);
+                    //CheckAvailable.setDateTimeReserve(dateTimeReserve);
                     return tableId;
                 }
             }
         }
-        CheckAvailable.setDateTimeReserve(dateTimeReserve);
+        //CheckAvailable.setDateTimeReserve(dateTimeReserve);
         return tableId;
     }
 
@@ -306,6 +307,7 @@ public class Queuing {
         db.executeQuery(sql);
     }
 
+    // aready
     public int checkLogin(String id, String pass) {
         String sql = "SELECT * FROM R_ID WHERE Id = '" + id + "'";
         HashMap user = db.queryRow(sql);
