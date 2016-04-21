@@ -21,28 +21,30 @@ import java.awt.event.MouseEvent;
 
 public class TableFace extends SimpleFace {
 	
-	private String[] message = {"Available - table No.", "Not Available"};
-	private JSpinner spnDate;
-	private JSpinner spnTime;
-	
+	// Declare variable
+	private ArrayList<JButton> buttons;
 	private JButton addButton;
 	private JButton fourSeats;
 	private JButton sixSeats;
 	private JButton tenSeats;
 	private JButton twoSeats;
+	private JLabel alertMessage;
+	private JLabel chairs;
 	private JLabel date;
 	private JLabel time;
-	private JLabel chairs;
 	private JPanel jPanel1;
 	private JPanel jPanel2;
 	private JPanel jPanel3;
-	private JLabel alertMessage;
-
-	private ArrayList<JButton> buttons;
+	private JSpinner spnDate;
+	private JSpinner spnTime;
 
 	public TableFace() {
 		super("Checking", WindowConstants.DISPOSE_ON_CLOSE);
 		addComponents();
+	}
+
+	public JLabel getMessage() {
+		return alertMessage;
 	}
 
 	public JButton getAddButton() {
@@ -65,10 +67,6 @@ public class TableFace extends SimpleFace {
 		jPanel2 = new JPanel();
 		jPanel3 = new JPanel();
 		addButton = new JButton();
-		tenSeats = buttonTemplate(10);
-		sixSeats = buttonTemplate(6);
-		fourSeats = buttonTemplate(4);
-		twoSeats = buttonTemplate(2);
 
 		// Set date-Time
 		spnDate = new JSpinner(new SpinnerDateModel());
@@ -92,9 +90,14 @@ public class TableFace extends SimpleFace {
 		alertMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		alertMessage.setPreferredSize(new Dimension(22, 19));
 
+		// Set Button
 		addButton.setFont(TAHOMA);
 		addButton.setText("Add");
 		addButton.setPreferredSize(new Dimension(75, 27));
+		tenSeats = buttonTemplate(10);
+		sixSeats = buttonTemplate(6);
+		fourSeats = buttonTemplate(4);
+		twoSeats = buttonTemplate(2);
 
 		// Set Layout
 		GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
