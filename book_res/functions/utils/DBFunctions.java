@@ -1,8 +1,8 @@
-package Functions.utils;
+package book_res.functions.utils;
 
 import java.util.HashMap;
 
-public class DBFunctions extends connectDB{
+public class DBFunctions extends ConnectDB{
     
     public DBFunctions() {
         super();

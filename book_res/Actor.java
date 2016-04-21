@@ -1,5 +1,7 @@
-import Gui.*;
-import Functions.*;
+package book_res;
+
+import book_res.interfaces.*;
+import book_res.functions.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

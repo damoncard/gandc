@@ -1,4 +1,4 @@
-package Gui;
+package interfaces;
 
 import java.awt.Dimension;
 import java.text.DateFormat;
