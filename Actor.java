@@ -6,34 +6,35 @@ import java.awt.event.ActionListener;
 public class Actor {
 
 	// Gui Objects
-	private static LogFace logface;
-	private static MainFace mainface;
-	private static TableFace tableface;
+	private static LogFace logface = new LogFace();
+	private static MainFace mainface = new MainFace();
+	private static TableFace tableface = new TableFace();
 
 	// Function Objects
-	private static LogIn login;
+	private static LogIn login = new LogIn();
 
-	public static void main (String [] args) {
-		logface = new LogFace();
-		/*logface.getButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				signInActionPerformed(e);
-			}
-		});*/
-		logface.setVisible(true);
+	public static void main(String[] args) {
+		loginPart();
 	}
-	/*
-	private static void signInActionPerformed(ActionEvent e) {
-		login = new LogIn();
-		if (login.checkLogin(logface.getForm())) {
-			mainPart();
-		}
+
+	private static void loginPart() {
+		logface.getButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				login.signInActionPerformed(e);
+			}
+		});
+		logface.setVisible(true);
 	}
 
 	private static void mainPart() {
 		mainface = new MainFace();
 		logface.dispose();
 		mainface.setVisible(true);
+	}
+
+	/*
+	private static void setButtons() {
+		
 	}
 
 	private static void checkSeat() {
