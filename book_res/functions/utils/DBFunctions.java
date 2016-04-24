@@ -15,9 +15,9 @@ public class DBFunctions extends ConnectDB{
             if (String.valueOf(user.get("Pass")).equals(pass)) {
                 return true;
             }
-        } else {
-            return false;
         }
+        return false;
+
     }
 
 }
