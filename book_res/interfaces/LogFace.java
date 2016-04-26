@@ -1,4 +1,4 @@
-package interfaces;
+package book_res.interfaces;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

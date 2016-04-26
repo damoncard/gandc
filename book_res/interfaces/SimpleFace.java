@@ -1,4 +1,4 @@
-package interfaces;
+package book_res.interfaces;
 
 import java.awt.Color;
 import java.awt.Font;

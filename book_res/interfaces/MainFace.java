@@ -1,4 +1,4 @@
-package interfaces;
+package book_res.interfaces;
 
 import java.sql.Timestamp;
 import java.awt.Dimension;
