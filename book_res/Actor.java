@@ -9,7 +9,7 @@ public class Actor {
 
 	// Gui Objects
 	private static LogFace logface = new LogFace();
-	private static MainFace mainface = new MainFace();
+	//private static MainFace mainface = new MainFace();
 	private static TableFace tableface = new TableFace();
 
 	// Function Objects
@@ -22,16 +22,16 @@ public class Actor {
 	private static void loginPart() {
 		logface.getButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				login.signInActionPerformed(e);
+				login.checkLogIn();
 			}
 		});
 		logface.setVisible(true);
 	}
 
 	private static void mainPart() {
-		mainface = new MainFace();
+		//mainface = new MainFace();
 		logface.dispose();
-		mainface.setVisible(true);
+		//mainface.setVisible(true);
 	}
 
 	/*
