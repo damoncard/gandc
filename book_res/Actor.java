@@ -9,14 +9,18 @@ public class Actor {
 
 	// Gui Objects
 	private static LogFace logface = new LogFace();
-	//private static MainFace mainface = new MainFace();
 	private static TableFace tableface = new TableFace();
 
 	// Function Objects
 	private static LogIn login = new LogIn();
 
 	public static void main(String[] args) {
-		loginPart();
+		start();
+	}
+
+	private static void start() {
+		login.setButton(logface);
+		logface.setVisible(true);
 	}
 
 	private static void loginPart() {
