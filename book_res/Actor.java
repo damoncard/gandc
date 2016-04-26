@@ -19,18 +19,10 @@ public class Actor {
 	}
 
 	private static void start() {
-		login.setButton(logface);
+		login.setSignInButton(logface);
 		logface.setVisible(true);
 	}
 
-	private static void loginPart() {
-		logface.getButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				login.checkLogIn();
-			}
-		});
-		logface.setVisible(true);
-	}
 
 	private static void mainPart() {
 		//mainface = new MainFace();
