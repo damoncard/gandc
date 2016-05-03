@@ -2,9 +2,9 @@ package book_res.functions.utils;
 
 import java.util.HashMap;
 
-public class DBFunctions extends ConnectDB{
+public class DBLogin extends ConnectDB{
     
-    public DBFunctions() {
+    public DBLogin() {
         super();
     }
     
