@@ -25,7 +25,7 @@ public class DBReserve extends ConnectDB{
         System.out.println(db.executeQuery(sql));
     }
     
-    public int getLastestOrderID() {
+    private int getLastestOrderID() {
         String sql = "SELECT MAX(reserveID) AS id FROM OOSD_RESERVES";
         HashMap id = db.queryRow(sql);
         return Integer.parseInt(String.valueOf(id.get("id")));
