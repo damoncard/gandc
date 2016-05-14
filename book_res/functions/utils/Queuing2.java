@@ -17,6 +17,7 @@ public class Queuing2 {
         System.out.println(db.connect());
     }
 
+    //already
     public int checkAvailable(Date date, Date time, int chairs) throws ParseException {
         int tableId = -1;
 
@@ -175,6 +176,7 @@ public class Queuing2 {
         return billing;
     }
 
+    //already
     public void insertOrders(String dateTimeReserve, String timeOut, int foodId, int quantity, int tableId, int customerId) {
         String sql = "INSERT INTO R_ORDERS(dateTimeReserve, timeOut, foodID, quantity, tableID, customerID) VALUES ( '"
                 + dateTimeReserve + " ', '"
@@ -292,11 +294,13 @@ public class Queuing2 {
         }
     }
 
+    //already
     public void updateStatusTable(int tableId) {
         String sql = "UPDATE R_TABLES SET available = false WHERE tableID = " + tableId;
         db.executeQuery(sql);
     }
 
+    //already
     public void updatePopularFood(int qty, String foodName) {
         String sql = "SELECT ordered FROM R_FOODS WHERE foodName = '" + foodName + "'";
         HashMap food = db.queryRow(sql);
@@ -306,7 +310,7 @@ public class Queuing2 {
         db.executeQuery(sql);
     }
 
-    // aready
+    // already
     public int checkLogin(String id, String pass) {
         String sql = "SELECT * FROM R_ID WHERE Id = '" + id + "'";
         HashMap user = db.queryRow(sql);
