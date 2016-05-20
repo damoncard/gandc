@@ -43,6 +43,15 @@ public class TableFace extends SimpleFace {
 	public JButton getAddButton() {
 		return addButton;
 	}
+        
+        public JSpinner getDate() {
+		return spnDate;
+	}
+        
+        public JSpinner getTime() {
+		return spnTime;
+	}
+        
 
 	public ArrayList<JButton> getChairButtons() {
 		return buttons;
