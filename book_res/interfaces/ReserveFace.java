@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class ReserveFace{
+public class ReserveFace implements MainMenu{
 
 
     // Snacks menu button
@@ -36,7 +36,7 @@ public class ReserveFace{
     
     
 
-    public void initReserve() {
+    public void init() {
         pnlTableMenu = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBeverageMenu = new javax.swing.JTable();
@@ -106,7 +106,7 @@ public class ReserveFace{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
                     int row = tblBeverageMenu.getSelectedRow();
-                    delectSelectedRow(tblBeverageMenu, lblTotalBeveragePrice, row);
+                    deleteSelectedRow(tblBeverageMenu, lblTotalBeveragePrice, row);
                 }
             }
         });
@@ -143,7 +143,7 @@ public class ReserveFace{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
                     int row = tblFoodMenu.getSelectedRow();
-                    delectSelectedRow(tblFoodMenu, lblTotalFoodPrice, row);
+                    deleteSelectedRow(tblFoodMenu, lblTotalFoodPrice, row);
                 }
             }
         });
@@ -635,7 +635,7 @@ public class ReserveFace{
     }
     
 
-    private void delectSelectedRow(javax.swing.JTable tbl, javax.swing.JLabel lbl, int row) {
+    private void deleteSelectedRow(javax.swing.JTable tbl, javax.swing.JLabel lbl, int row) {
         int res = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure you want to delete row " + (tbl.getSelectedRow() + 1) + " ?", "Please Confirm", javax.swing.JOptionPane.YES_NO_OPTION);
         switch (res) {
 

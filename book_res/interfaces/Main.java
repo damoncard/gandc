@@ -29,11 +29,11 @@ public class Main extends SimpleFace{
     private static JLabel lblUser;
     public static JPanel contentPane;
     private JPanel menuTab;
-    ReserveFace reserveFace;
+    CollectMainMenu menu;
     
     public Main() {
         super("Restaurant", WindowConstants.EXIT_ON_CLOSE);
-        reserveFace.initReserve();
+        menu.getReserve();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Main extends SimpleFace{
         jLabel1 = new JLabel();
         lblClock = new JLabel();
         lblUser = new JLabel();
-        reserveFace = new ReserveFace();
+        menu = new CollectMainMenu();
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
