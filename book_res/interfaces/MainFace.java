@@ -30,7 +30,7 @@ import javax.swing.GroupLayout.Alignment;
 
 public class MainFace extends SimpleFace {
 
-	private static Timestamp dateTimeReserve, 
+	private static Timestamp dateTimeReserve; 
 
 	// Snacks menu button
 	private JButton btnFriedFishPasteBalls, btnCharcoalBoiledPorkNeck, btnFriedChicken,
@@ -93,7 +93,7 @@ public class MainFace extends SimpleFace {
 	private Timer timer;
 	private MenuButton mb;
 
-	public MainFrame(String name) {
+	public MainFace(String name) {
 		super("Restaurant", WindowConstants.EXIT_ON_CLOSE);
 		lblUser.setText(name);
 		
@@ -111,7 +111,7 @@ public class MainFace extends SimpleFace {
 			// Waiting for structs
 		}
 
-		protected void menuTemplate(Jbutton b, String des, double price) {
+		protected void menuTemplate(JButton b, String des, double price) {
 			b.setText(des);
 			b.setPreferredSize(new Dimension(170, 50));
 			b.addMouseListener(new MouseAdapter() {
@@ -121,11 +121,11 @@ public class MainFace extends SimpleFace {
 			});
 		}
 
-		protected void addMenu(JButton b, double price) {
+		protected void addMenu(JButton btn, double price) {
 			DefaultTableModel model = (DefaultTableModel) tblFoodMenu.getModel();
 
 			for (int i = 0; i < model.getRowCount(); i++) {
-				if (b.getText().equals(model.getValueAt(i, 1))) {
+				if (btn.getText().equals(model.getValueAt(i, 1))) {
 					model.setValueAt(Integer.parseInt(String.valueOf((model.getValueAt(i, 3)))) + 1, i, 3);
 					model.setValueAt(putComma(price * removeComma(String.valueOf(model.getValueAt(i, 3)))), i, 4);
 					break;
@@ -151,10 +151,10 @@ public class MainFace extends SimpleFace {
 			if (label.getText().equals("")) {
 				totalPrice = price;
 			} else {
-				totalPrice = removeComma(String.valueOf(label.getText()))
+				totalPrice = removeComma(String.valueOf(label.getText()));
 				if (sign.equals("+")) {
 					totalPrice += price;
-				else {
+                                } else {
 					totalPrice -= price;
 				}
 			}
@@ -542,7 +542,7 @@ public class MainFace extends SimpleFace {
 			btnCheck.setText("Check Tables");
 			btnCheck.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
-					new CheckAvailable().setVisible(true);
+					new TableFace().setVisible(true);
 				}
 			});
 
