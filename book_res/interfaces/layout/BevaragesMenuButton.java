@@ -11,7 +11,7 @@ import javax.swing.JButton;
 class BeveragesMenuButtons extends MenuTemplate {
 
 	public BeveragesMenuButtons(MainFace f, ArrayList<HashMap<String, String>> buttons) {
-		super();
+		super(f);
 		for (HashMap<String, String> b : buttons) {
 			createButton(b.get("Name"), Double.parseDouble(b.get("Price")));
 		}

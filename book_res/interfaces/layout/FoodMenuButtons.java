@@ -11,7 +11,7 @@ import javax.swing.JButton;
 class FoodMenuButtons extends MenuTemplate {
 
 	public FoodMenuButtons(MainFace f, ArrayList<HashMap<String, String>> buttons) {
-		super();
+		super(f);
 		for (HashMap<String, String> b : buttons) {
 			createButton(b.get("Name"), Double.parseDouble(b.get("Price")));
 		}
@@ -32,7 +32,7 @@ class FoodMenuButtons extends MenuTemplate {
 	}
 
 	@Override
-	private void setPanel() {
+	protected void setPanel() {
 		GroupLayout foodLayout = new GroupLayout(panel);
 		panel.setLayout(foodLayout);
 		foodLayout.setHorizontalGroup(
@@ -53,15 +53,15 @@ class FoodMenuButtons extends MenuTemplate {
 									.addGap(18, 18, 18)
 									.addComponent(allMenus.get(5), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGroup(foodLayout.createSequentialGroup()
-									.addComponent(btnClearSoup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(allMenus.get(6), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(18, 18, 18)
-									.addComponent(allMenus.get(6), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(allMenus.get(7), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGroup(foodLayout.createSequentialGroup()
-									.addComponent(allMenus.get(7), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(allMenus.get(8), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(18, 18, 18)
-									.addComponent(allMenus.get(8), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGroup(foodLayout.createSequentialGroup()
 									.addComponent(allMenus.get(9), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(foodLayout.createSequentialGroup()
+									.addComponent(allMenus.get(10), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				)
@@ -83,15 +83,15 @@ class FoodMenuButtons extends MenuTemplate {
 							.addComponent(allMenus.get(5), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18, 18, 18)
 					.addGroup(foodLayout.createParallelGroup(Alignment.LEADING)
-							.addComponent(btnClearSoup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(allMenus.get(6), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(allMenus.get(6), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(allMenus.get(7), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18, 18, 18)
 					.addGroup(foodLayout.createParallelGroup(Alignment.LEADING)
-							.addComponent(allMenus.get(7), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(allMenus.get(8), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(allMenus.get(8), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(allMenus.get(9), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18, 18, 18)
 					.addGroup(foodLayout.createParallelGroup(Alignment.LEADING)
-							.addComponent(allMenus.get(9), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(allMenus.get(10), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18, 18, 18))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				)
