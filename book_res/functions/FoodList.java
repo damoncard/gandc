@@ -13,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Default141
  */
-public class FoodFucntion {
+public class FoodList {
     static DBFood foodlist = new DBFood();
     
     public ArrayList<HashMap> getFoodList() {
@@ -40,6 +40,4 @@ public class FoodFucntion {
         }
         return foodList;
     }
-    
-
 }
