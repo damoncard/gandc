@@ -1,6 +1,8 @@
 package book_res.interfaces;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import javax.swing.WindowConstants;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class TableFace extends SimpleFace {
 	
@@ -40,7 +43,7 @@ public class TableFace extends SimpleFace {
 
 	public TableFace() {
 		super("Checking", WindowConstants.DISPOSE_ON_CLOSE);
-		addComponents();
+		//addComponents();
 	}
 
 	public JLabel getMessage() {
@@ -54,6 +57,19 @@ public class TableFace extends SimpleFace {
 	public ArrayList<JButton> getChairButtons() {
 		return buttons;
 	}
+        
+        public JSpinner getDate(){
+               return spnDate;
+        }
+        
+        public JSpinner getTime(){
+               return spnTime;
+        }
+        
+        public String getD() {
+            return String.valueOf(spnDate.getValue());
+        }
+        
 
 	@Override
 	protected void addComponents() {
@@ -202,7 +218,6 @@ public class TableFace extends SimpleFace {
 					.addComponent(spnTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-
 		pack();
 	}
 

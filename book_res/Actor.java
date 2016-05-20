@@ -1,9 +1,10 @@
 package book_res;
 
-import book_res.interfaces.*;
+import book_res.interfaces.LogFace;
+import book_res.interfaces.TableFace;
 import book_res.functions.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 
 public class Actor {
 
@@ -25,9 +26,12 @@ public class Actor {
 
 
 	private static void mainPart() {
+            if(login.checkLogIn(logface)){
 		//mainface = new MainFace();
+                System.out.println("pass");
 		logface.dispose();
 		//mainface.setVisible(true);
+            }
 	}
 
 	/*
