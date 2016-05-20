@@ -2,8 +2,6 @@ package book_res;
 
 import book_res.interfaces.*;
 import book_res.functions.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Actor {
 
@@ -14,20 +12,23 @@ public class Actor {
 	// Function Objects
 	private static LogIn login = new LogIn();
 
-	public static void main(String[] args) {
-		start();
-	}
+	// This Object
+	private static Actor actor = new Actor();
 
-	private static void start() {
+	public void start() {
 		login.setSignInButton(logface);
 		logface.setVisible(true);
 	}
 
 
-	private static void mainPart() {
+	public void mainPart() {
 		//mainface = new MainFace();
 		logface.dispose();
 		//mainface.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		actor.start();
 	}
 
 	/*

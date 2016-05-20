@@ -40,7 +40,6 @@ public class TableFace extends SimpleFace {
 
 	public TableFace() {
 		super("Checking", WindowConstants.DISPOSE_ON_CLOSE);
-		addComponents();
 	}
 
 	public JLabel getMessage() {
