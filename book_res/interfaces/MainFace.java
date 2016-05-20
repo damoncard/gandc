@@ -3,7 +3,6 @@ package book_res.interfaces;
 import book_res.interfaces.layout.*;
 import java.sql.Timestamp;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.MouseEvent;
@@ -15,7 +14,6 @@ import java.util.GregorianCalendar;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -31,7 +29,7 @@ import javax.swing.GroupLayout.Alignment;
 
 public class MainFace extends SimpleFace {
 
-	private static Timestamp dateTimeReserve, 
+	private static Timestamp dateTimeReserve; 
 
 	// Snacks menu button
 	private JButton btnFriedFishPasteBalls, btnCharcoalBoiledPorkNeck, btnFriedChicken,
@@ -94,7 +92,7 @@ public class MainFace extends SimpleFace {
 	private Timer timer;
 	private MenuButton mb;
 
-	public MainFrame(String name) {
+	public MainFace(String name) {
 		super("Restaurant", WindowConstants.EXIT_ON_CLOSE);
 		lblUser.setText(name);
 
@@ -105,7 +103,6 @@ public class MainFace extends SimpleFace {
 
 	public JPanel getMenuPane() {
 		return pnlMenuButton;
-	}
 
 	class newTabLayout {
 
@@ -297,7 +294,7 @@ public class MainFace extends SimpleFace {
 			btnCheck.setText("Check Tables");
 			btnCheck.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
-					new CheckAvailable().setVisible(true);
+					new TableFace().setVisible(true);
 				}
 			});
 
@@ -1813,70 +1810,3 @@ public class MainFace extends SimpleFace {
 
 }
 
-/*
-	javax.swing.JLabel snackPop, foodPop;
-	private void addPopularFood() {
-
-		java.util.ArrayList<java.util.HashMap> snacks = queue.getPopularSnacks();
-		java.util.ArrayList<java.util.HashMap> foods = queue.getPopularFoods();
-		snackPop = new javax.swing.JLabel("=====Snacks Popular=====");
-		foodPop = new javax.swing.JLabel("=====Foods Popular=====");
-		
-		System.out.println(snackButtons.get(snacks.get(0).get("foodName")));
-		System.out.println(snackButtons.get(snacks.get(1).get("foodName")));
-		System.out.println(foodButtons.get(foods.get(0).get("foodName")));
-		System.out.println(foodButtons.get(foods.get(1).get("foodName")));
-		System.out.println(foodButtons.get(foods.get(2).get("foodName")));
-		System.out.println(foodButtons.get(foods.get(3).get("foodName")));
-		
-
-		GroupLayout pnlLayout = new GroupLayout(pnlMenuButton);
-		pnlMenuButton.setLayout(pnlLayout);
-		pnlLayout.setHorizontalGroup(
-				pnlLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(pnlLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(pnlLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(pnlLayout.createSequentialGroup()
-										.addComponent(snackPop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(pnlLayout.createSequentialGroup()
-										.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(pnlLayout.createSequentialGroup()
-										.addComponent(foodPop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(pnlLayout.createSequentialGroup()
-										.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(pnlLayout.createSequentialGroup()
-										.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		pnlLayout.setVerticalGroup(
-				pnlLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(pnlLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(pnlLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(snackPop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(20, 20, 20)
-						.addGroup(pnlLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(pnlLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(foodPop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(20, 20, 20)
-						.addGroup(pnlLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(pnlLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-	}
-*/

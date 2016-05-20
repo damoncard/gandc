@@ -31,6 +31,12 @@ public class DBReserve extends ConnectDB{
         return Integer.parseInt(String.valueOf(id.get("id")));
     }
     
+    public int getIDFromName(String name) {
+        String sql = "SELECT foodID FROM OOSD_FOODS WHERE foodName = '" + name + "'";
+        HashMap foodName = db.queryRow(sql);
+        return Integer.parseInt(String.valueOf(foodName.get("foodID")));
+    }
+    
     public void addOrders(int foodID, int qty) {
         String sql = "INSERT INTO OOSD_ORDERS(reserveID, foodID, quantity) VALUES ( "
                 + getLastestOrderID() + ", "

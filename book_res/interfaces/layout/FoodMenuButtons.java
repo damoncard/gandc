@@ -98,7 +98,7 @@ class FoodMenuButtons extends MenuTemplate {
 		);
 	}
 
-	protected void addMenu(JButton b, double price) {
+	/*protected void addMenu(JButton b, double price) {
 		DefaultTableModel model = (DefaultTableModel) tblFoodMenu.getModel();
 
 		for (int i = 0; i < model.getRowCount(); i++) {
@@ -171,5 +171,5 @@ class FoodMenuButtons extends MenuTemplate {
 			}
 			return res + ".00.-";
 		}
-	}
+	}*/
 }
