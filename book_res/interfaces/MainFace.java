@@ -31,18 +31,6 @@ public class MainFace extends SimpleFace {
 
 	private static Timestamp dateTimeReserve; 
 
-	// Snacks menu button
-	private JButton btnFriedFishPasteBalls, btnCharcoalBoiledPorkNeck, btnFriedChicken,
-			btnFriedPorkRind, btnCrispyWonton, btnSteamedSpringRoll;
-
-	// Foods menu button
-	private JButton btnRice, btnCasseroledPrawns, btnSteamedDuck, btnFriedFishToppedWithChilliSauce,
-			btnSpicyVermicelliSalad, btnChickenGreenCurry, btnClearSoup, btnMincedPorkOmelet,
-			btnFriedCrabinYellowCurry, btnDeepFriendShrimpCakes, btnTomYumKung;
-
-	// Beverages menu button
-	private JButton btnWater, btnPepsi, btnSprite, btnFanta, btnSoda, btnGreenTea;
-
 	// Variables declaration 
 	private JButton backlogButton;
 	private JButton billingButton;
