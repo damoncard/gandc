@@ -65,8 +65,7 @@ public class Main extends SimpleFace{
         reserveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         reserveButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contentPane.removeAll();
-                menu.getReserve();
+                reserveButtonMouseClicked(evt);
             }
         });
 
@@ -75,8 +74,7 @@ public class Main extends SimpleFace{
         billingButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         billingButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contentPane.removeAll();
-                menu.getBilling();
+                billingButtonMouseClicked(evt);
             }
         });
 
