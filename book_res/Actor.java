@@ -2,6 +2,7 @@ package book_res;
 
 import book_res.interfaces.LogFace;
 import book_res.interfaces.TableFace;
+import book_res.interfaces.Main;
 import book_res.functions.*;
 
 public class Actor {
@@ -23,10 +24,10 @@ public class Actor {
 
 	public void mainPart() {
 		if(login.checkLogIn(logface)){
-		//mainface = new MainFace();
+		Main mainface = new Main();
 		System.out.println("pass");
 		logface.dispose();
-		//mainface.setVisible(true);
+		mainface.setVisible(true);
 		}
 	}
 
