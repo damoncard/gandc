@@ -21,7 +21,17 @@ public class DBFood extends ConnectDB{
     }
     
     public ArrayList<HashMap> getAllFoodIDs() {
-        String sql = "SELECT foodID FROM OOSD_FOODS";
+        String sql = "SELECT foodID FROM OOSD_FOODS WHERE foodID BETWEEN 201 AND 299";
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getAllBevaragesIDs() {
+        String sql = "SELECT foodID FROM OOSD_FOODS WHERE foodID BETWEEN 101 AND 199";
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getAllSnackIDs() {
+        String sql = "SELECT foodID FROM OOSD_FOODS WHERE foodID BETWEEN 301 AND 399";
         return db.queryRows(sql);
     }
     
