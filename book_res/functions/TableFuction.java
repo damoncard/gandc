@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import book_res.functions.utils.DBCheckTable;
 import java.awt.Color;
 import java.util.ArrayList;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 
 
 /**
@@ -41,7 +42,7 @@ public class TableFuction {
         (tableface.getAddButton()).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //reserveTablePerformed(e);
+                reserveTablePerformed(e);
             }
         });
 
@@ -80,25 +81,10 @@ public class TableFuction {
         }
     }
 
-    /*private static void reserveTablePerformed(ActionEvent e) {
-     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-     time = String.valueOf(tableface.getTime().getValue());
-     date = dateFormat.format(tableface.getDate().getValue());
-     tableId = checkTable.checkAvailable("2016-05-04", "13:00", 4);
-     //Calendar cal = new GregorianCalendar();
-     //cal.set(Calendar.ERA, GregorianCalendar.AD);
-     //cal.setTime(date);
-     //date.add(java.util.Calendar.YEAR, -543);
-     // Call method in model
-     //System.out.println(time +"       "+date);
-     if(tableId != -1){
-     tableface.getMessage().setText(message1+ tableId);
-     //tableface.getMessage().setForeground(new Color(0, 204, 0));
-     }else{
-     tableface.getMessage().setText(message2); 
-     //tableface.getMessage().setForeground(new Color(255, 0, 0));
-     }
-     }*/
+    private static void reserveTablePerformed(ActionEvent e) {
+        System.out.println("Finish");
+        tableface.dispose();
+    }
     public static void main(String[] args) {
         //System.out.println(chairButtons.get(0));
         TableFuction t = new TableFuction();
