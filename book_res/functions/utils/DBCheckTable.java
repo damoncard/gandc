@@ -22,7 +22,6 @@ public class DBCheckTable extends ConnectDB {
                 + " AND (NOT EXISTS (" + innerSelect + ")" // to get tableID that don't have any reserves
                 +      " OR NOT EXISTS (" + innerSelect + " AND dateReserve = '" + date + "')" // get tableID that don't have reserve in this date
                 +      " OR NOT EXISTS (" + innerSelect + " AND ('" + time + "' BETWEEN timeReserve + interval -2 hour AND timeReserve + interval 2 hour)) );";
-        System.out.println(sql);
         HashMap table = db.queryRow(sql);
 
         if (table.isEmpty()) {
