@@ -118,6 +118,7 @@ public class Queuing2 {
         return Integer.parseInt(String.valueOf(foodId.get("foodID")));
     }
 
+    //already
     public ArrayList<HashMap> getOrders(Date d) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar date = new GregorianCalendar();

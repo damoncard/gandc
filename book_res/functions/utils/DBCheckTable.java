@@ -12,8 +12,7 @@ public class DBCheckTable extends ConnectDB {
      * @param date in 'YYYY-MM-DD' format
      * @param time in 'HH:MM' format
      * @param chairs
-     * @return tableID that available in this date and time, -1 is in case that
-     * don't have available tables
+     * @return tableID that available in this date and time, -1 is in case that don't have available tables
      */
     public int checkAvailable(String date, String time, int chairs) {
         int tableId = -1;
