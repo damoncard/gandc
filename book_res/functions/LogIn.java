@@ -7,7 +7,7 @@ import book_res.Actor;
 
 
 public class LogIn {
-    private static DBFunctions log = new DBFunctions();
+    private static DBLogin log = new DBLogin();
     //private static ConnectDB con = new ConnectDB();
     private static String[] inUser;
     private Actor main = new Actor();
