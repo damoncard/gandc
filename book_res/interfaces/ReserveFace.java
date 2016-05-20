@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class ReserveFace implements MainMenu{
 
@@ -31,7 +32,7 @@ public class ReserveFace implements MainMenu{
             pnlMenuButton, pnlTableMenu;
     private JScrollPane jScrollPane1, jScrollPane2, jScrollPane3;
     private static JLabel lblReserve, lblTableNo;
-    private JTable tblFoodMenu, tblBeverageMenu;
+    private Table tblFoodMenu, tblBeverageMenu;
     private JTextField txtName;
     
     
@@ -39,9 +40,9 @@ public class ReserveFace implements MainMenu{
     public void init() {
         pnlTableMenu = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblBeverageMenu = new javax.swing.JTable();
+        tblBeverageMenu = new Table("Foods");
+        tblFoodMenu = new Table("Bevarages");
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblFoodMenu = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         lblTotalFoodPrice = new javax.swing.JLabel();
@@ -74,34 +75,6 @@ public class ReserveFace implements MainMenu{
         pnlTableMenu.setBackground(new java.awt.Color(204, 204, 204));
         pnlTableMenu.setPreferredSize(new java.awt.Dimension(415, 460));
 
-        tblBeverageMenu.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "No.", "Beverages", "Price", "Qty.", "Amount"
-                }
-        ) {
-            Class[] types = new Class[]{
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean[]{
-                false, false, false, true, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
-        tblBeverageMenu.getColumnModel().getColumn(0).setPreferredWidth(15);
-        tblBeverageMenu.getColumnModel().getColumn(1).setPreferredWidth(210);
-        tblBeverageMenu.getColumnModel().getColumn(2).setPreferredWidth(50);
-        tblBeverageMenu.getColumnModel().getColumn(3).setPreferredWidth(15);
-        tblBeverageMenu.getColumnModel().getColumn(4).setPreferredWidth(60);
-        ((javax.swing.table.DefaultTableCellRenderer) tblBeverageMenu.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(javax.swing.JLabel.CENTER);
-
         tblBeverageMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
@@ -112,33 +85,6 @@ public class ReserveFace implements MainMenu{
         });
         jScrollPane2.setViewportView(tblBeverageMenu);
 
-        tblFoodMenu.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "No.", "Foods", "Price", "Qty.", "Amount"
-                }
-        ) {
-            Class[] types = new Class[]{
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean[]{
-                false, false, false, true, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
-        tblFoodMenu.getColumnModel().getColumn(0).setPreferredWidth(15);
-        tblFoodMenu.getColumnModel().getColumn(1).setPreferredWidth(210);
-        tblFoodMenu.getColumnModel().getColumn(2).setPreferredWidth(50);
-        tblFoodMenu.getColumnModel().getColumn(3).setPreferredWidth(15);
-        tblFoodMenu.getColumnModel().getColumn(4).setPreferredWidth(60);
-        ((javax.swing.table.DefaultTableCellRenderer) tblFoodMenu.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(javax.swing.JLabel.CENTER);
         tblFoodMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
@@ -149,13 +95,6 @@ public class ReserveFace implements MainMenu{
         });
 
         jScrollPane3.setViewportView(tblFoodMenu);
-
-        javax.swing.table.DefaultTableCellRenderer leftRenderer = new javax.swing.table.DefaultTableCellRenderer();
-        leftRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
-        for (int i = 0; i <= 4; i++) {
-            tblFoodMenu.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
-            tblBeverageMenu.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
-        }
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -659,5 +598,44 @@ public class ReserveFace implements MainMenu{
                 break;
         }
 
+    }
+}
+
+class Table extends JTable {
+    public Table(String name) {
+        setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "No.", name, "Price", "Qty.", "Amount"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        
+        getColumnModel().getColumn(0).setPreferredWidth(15);
+        getColumnModel().getColumn(1).setPreferredWidth(210);
+        getColumnModel().getColumn(2).setPreferredWidth(50);
+        getColumnModel().getColumn(3).setPreferredWidth(15);
+        getColumnModel().getColumn(4).setPreferredWidth(60);
+        ((DefaultTableCellRenderer) getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
+        for (int i = 0; i <= 4; i++) {
+            getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+        }
     }
 }
