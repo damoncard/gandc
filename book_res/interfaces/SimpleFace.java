@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
-public abstract class SimpleFace extends JFrame {
+abstract class SimpleFace extends JFrame {
 
 	private ImageIcon img = new ImageIcon("items/icon.jpg");
 	protected final Color BLACK = new Color(0, 0, 0);
