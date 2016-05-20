@@ -3,11 +3,6 @@ package book_res;
 import book_res.interfaces.LogFace;
 import book_res.interfaces.TableFace;
 import book_res.functions.*;
-<<<<<<< HEAD
-=======
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
->>>>>>> 65826ba8ef0a2849215eb8cffb1482c98c0272d6
 
 public class Actor {
 
@@ -26,18 +21,13 @@ public class Actor {
 		logface.setVisible(true);
 	}
 
-
-<<<<<<< HEAD
 	public void mainPart() {
-=======
-	private static void mainPart() {
-            if(login.checkLogIn(logface)){
->>>>>>> 65826ba8ef0a2849215eb8cffb1482c98c0272d6
+		if(login.checkLogIn(logface)){
 		//mainface = new MainFace();
-                System.out.println("pass");
+		System.out.println("pass");
 		logface.dispose();
 		//mainface.setVisible(true);
-            }
+		}
 	}
 
 	public static void main(String[] args) {
