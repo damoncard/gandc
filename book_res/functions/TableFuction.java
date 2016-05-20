@@ -33,7 +33,6 @@ public class TableFuction {
         checkTable = new DBCheckTable();
         tableface = new TableFace();
         chairButtons = tableface.getChairButtons();
-
         checkTable();
         checkSeat();
     }
@@ -58,14 +57,13 @@ public class TableFuction {
 
     private void checkPerformed(int seats) {
         tableId = checkTable.checkAvailable(String.valueOf(tableface.getDate().getValue()), String.valueOf(tableface.getTime().getValue()), seats);
-
         if (tableId != -1) {
             tableface.getMessage().setText(message1 + tableId);
             tableface.getMessage().setForeground(new Color(0, 204, 0));
         } else {
             tableface.getMessage().setText(message2);
             tableface.getMessage().setForeground(new Color(255, 0, 0));
-            this.tableId = tableId;
+            //this.tableId = tableId;
         }
     }
     
@@ -102,8 +100,8 @@ public class TableFuction {
      }
      }*/
     public static void main(String[] args) {
-        TableFuction table = new TableFuction();
-        //table.checkTable();
+        //System.out.println(chairButtons.get(0));
+        TableFuction t = new TableFuction();
     }
 
     
