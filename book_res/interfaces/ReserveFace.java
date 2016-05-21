@@ -22,7 +22,7 @@ public class ReserveFace implements MainMenu{
     public static JLabel lblReserve, lblTableNo;
     public static JButton btnFoods, btnSnacks, btnBeverages;
     private static Table tblFoodMenu, tblBeverageMenu;
-    private JTextField txtName;
+    public JTextField txtName;
     private JButton[] foodTypeBtn;
     public static JButton[] btnFoodType;
     public static JPanel pnlMenuButton;
@@ -337,6 +337,7 @@ public class ReserveFace implements MainMenu{
                 } else if (txtName.getText().equals("")) {
                     javax.swing.JOptionPane.showMessageDialog(null, "Please input customer's name");
                 } else if (tblFoodMenu.getRowCount() == 0 && tblBeverageMenu.getRowCount() == 0) {
+                    System.out.println(tblFoodMenu.getRowCount());
                     javax.swing.JOptionPane.showMessageDialog(null, "Please select orders");
                 } else {
 //                    customerId = queue.getCustomerId(txtName.getText());
