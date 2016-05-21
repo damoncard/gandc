@@ -46,9 +46,6 @@ public class Main extends SimpleFace {
         setTime();
     }
     
-    public void re(){
-        menu.getReserve();
-    }
 
     @Override
     protected void addComponents() {
