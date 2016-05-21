@@ -26,29 +26,30 @@ public class FoodList {
         foodlist.connect();
     }
     
-    public ArrayList<HashMap> getFoodList() {
+    public ArrayList<HashMap<String, String>> getFoodList() {
         return list(foodlist.getAllFoodIDs());
     }
     
-    public ArrayList<HashMap> getBevarageList() {
+    public ArrayList<HashMap<String, String>> getBevarageList() {
         return list(foodlist.getAllBevaragesIDs());
     } 
     
-    public ArrayList<HashMap> getSnackList() {
+    public ArrayList<HashMap<String, String>> getSnackList() {
         return list(foodlist.getAllSnackIDs());
     }
     
-    private ArrayList<HashMap> list(ArrayList<HashMap> listIDs){
-        ArrayList<HashMap> foodList = new ArrayList<>();
-        HashMap foodHash;
-        for(HashMap foodID : listIDs){
+    private ArrayList<HashMap<String, String>> list(ArrayList<HashMap> listIDs){
+        
+        ArrayList<HashMap<String, String>> foodList = new ArrayList<>();
+        HashMap<String, String> foodHash;
+        for(HashMap<String, String> foodID : listIDs){
             foodHash = new HashMap();
             int id = Integer.parseInt(String.valueOf(foodID.get("foodID")));
             foodHash.put("NAME", foodlist.getFoodName(id));
             foodHash.put("PRICE", foodlist.getPrice(id));
             foodList.add(foodHash);
         }
-        foodlist.disconnect();
+        
         return foodList;
     }
 }

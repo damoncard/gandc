@@ -5,32 +5,58 @@
  */
 package book_res.functions;
 
-import book_res.interfaces.ReserveFace;
+import book_res.interfaces.layout.FoodMenuButtons;
+import book_res.interfaces.layout.SnackMenuButtons;
+import book_res.interfaces.layout.BeveragesMenuButtons;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 /**
  *
  * @author Default141
  */
 public class FoodFunction {
-     FoodList food = new FoodList();
-     public void buttonPerformed(ButtonActionListener e) {
-            ReserveFace reserveFace = new ReserveFace();
-            foodPerformed(reserveFace.getMenuButtons()[0]);
-            SnackPerformed(reserveFace.getMenuButtons()[1]);
-            BevaragePerformed(reserveFace.getMenuButtons()[2]);
-     }
-     private ArrayList foodPerformed(JButton foodkind){
-             return food.getFoodList();
-     }
-     private ArrayList SnackPerformed(JButton foodkind){
-             return food.getSnackList();
-     }
-      private ArrayList BevaragePerformed(JButton foodkind){
-             return food.getBevarageList();
-     }
+
+    FoodList food;
+ 
+    public void setButtons(JButton b[]) {
+        food = new FoodList();
+            setSnackButton(b[0]);
+            setFoodButton(b[1]);
+            setBeverageButton(b[2]);
+
+
+    }
+
+    private void setFoodButton(JButton b) {
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FoodMenuButtons(food.getFoodList());
+            }
+        });
+    }
+    
+    private void setSnackButton(JButton b) {
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SnackMenuButtons(food.getSnackList());
+            }
+        });
+    }
+    
+    private void setBeverageButton(JButton b) {
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new BeveragesMenuButtons(food.getBevarageList());
+            }
+        });
+    }
+
 }
+
+

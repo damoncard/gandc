@@ -1,20 +1,19 @@
 package book_res.interfaces.layout;
 
-import book_res.interfaces.MainFace;
+import book_res.interfaces.ReserveFace;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
-abstract class MenuTemplate {
+public abstract class MenuTemplate {
 
 	protected ArrayList<JButton> allMenus;
-	protected JPanel panel;
 
-	public MenuTemplate(MainFace m) {
-		panel = m.getMenuPane();
+	public MenuTemplate() {
 		allMenus = new ArrayList<JButton>();
+                ReserveFace.pnlMenuButton.removeAll();
 	}
-
-	protected abstract void createButton(String n, double price);
+        
+        protected abstract void createButton(String n, double price);
 	protected abstract void setPanel();
 }

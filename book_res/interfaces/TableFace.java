@@ -54,7 +54,6 @@ public class TableFace extends SimpleFace {
         
 
 	public ArrayList<JButton> getChairButtons() {
-                System.out.println("hello");
 		return buttons;
 	}
 

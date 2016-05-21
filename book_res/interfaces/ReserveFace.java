@@ -1,6 +1,10 @@
 package book_res.interfaces;
 
+import book_res.functions.FoodList;
 import book_res.functions.TableFuction;
+import book_res.interfaces.layout.FoodMenuButtons;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,29 +16,19 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class ReserveFace implements MainMenu{
 
-
-    // Snacks menu button
-    private JButton btnFriedFishPasteBalls, btnCharcoalBoiledPorkNeck, btnFriedChicken,
-            btnFriedPorkRind, btnCrispyWonton, btnSteamedSpringRoll;
-
-    // Foods menu button
-    private JButton btnRice, btnCasseroledPrawns, btnSteamedDuck, btnFriedFishToppedWithChilliSauce,
-            btnSpicyVermicelliSalad, btnChickenGreenCurry, btnClearSoup, btnMincedPorkOmelet,
-            btnFriedCrabinYellowCurry, btnDeepFriendShrimpCakes, btnTomYumKung;
-
-    // Beverages menu button
-    private JButton btnWater, btnPepsi, btnSprite, btnFanta, btnSoda, btnGreenTea;
-
     // Variable of reserve's part
-    private JButton btnBeverages, btnCheck, btnClear, btnDone, btnFoods, btnSnacks;
+    private JButton btnCheck, btnClear, btnDone;
     private JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel8,
             lblDate, lblTime, lblTotalFoodPrice, lblTotalBeveragePrice, lblTotalPrice;
-    private JPanel jPanel1, jPanel2, jPanel4, jPanel5, jPanel6, jPanel7,
-            pnlMenuButton, pnlTableMenu;
+    private JPanel jPanel1, jPanel2, jPanel4, jPanel5, jPanel6, jPanel7, pnlTableMenu;
     private JScrollPane jScrollPane1, jScrollPane2, jScrollPane3;
     public static JLabel lblReserve, lblTableNo;
+    public static JButton btnFoods, btnSnacks, btnBeverages;
     private Table tblFoodMenu, tblBeverageMenu;
     private JTextField txtName;
+    private JButton[] foodTypeBtn;
+    public static JButton[] btnFoodType;
+    public static JPanel pnlMenuButton;
     
     public ReserveFace() {
         pnlTableMenu = new javax.swing.JPanel();
@@ -59,9 +53,9 @@ public class ReserveFace implements MainMenu{
         lblTableNo = new javax.swing.JLabel();
         lblReserve = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnSnacks = new javax.swing.JButton();
-        btnFoods = new javax.swing.JButton();
-        btnBeverages = new javax.swing.JButton();
+        btnSnacks = new javax.swing.JButton("Snacks");
+        btnFoods = new javax.swing.JButton("Foods");
+        btnBeverages = new javax.swing.JButton("Bevarages");
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlMenuButton = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -70,16 +64,15 @@ public class ReserveFace implements MainMenu{
         jPanel7 = new javax.swing.JPanel();
         btnClear = new javax.swing.JButton();
         btnDone = new javax.swing.JButton();
+        btnFoodType = new JButton[]{btnSnacks, btnFoods, btnBeverages};
+        
     }
     
-    public JButton[] getMenuButtons() {
-        return new JButton[]{btnFoods, btnSnacks, btnBeverages};
+    public JButton[] getFoodTypeBtn() {
+        return btnFoodType;
     }
-    
 
     public void init() {
-        
-
         pnlTableMenu.setBackground(new java.awt.Color(204, 204, 204));
         pnlTableMenu.setPreferredSize(new java.awt.Dimension(415, 460));
 
@@ -249,30 +242,12 @@ public class ReserveFace implements MainMenu{
 
         btnSnacks.setText("Snacks");
         btnSnacks.setPreferredSize(new java.awt.Dimension(90, 25));
-        btnSnacks.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlMenuButton.removeAll();
-                addSnacksButton();
-            }
-        });
 
         btnFoods.setText("Foods");
         btnFoods.setPreferredSize(new java.awt.Dimension(90, 25));
-        btnFoods.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlMenuButton.removeAll();
-                addFoodsButton();
-            }
-        });
 
         btnBeverages.setText("Beverages");
         btnBeverages.setPreferredSize(new java.awt.Dimension(90, 25));
-        btnBeverages.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlMenuButton.removeAll();
-                addBevaragesButton();
-            }
-        });
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -428,160 +403,7 @@ public class ReserveFace implements MainMenu{
                         .addGap(13, 13, 13))
         );
     }
-
-    protected void addSnacksButton() {
-        GroupLayout pnlSnacksLayout = new GroupLayout(pnlMenuButton);
-        pnlMenuButton.setLayout(pnlSnacksLayout);
-        pnlSnacksLayout.setHorizontalGroup(
-                pnlSnacksLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSnacksLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlSnacksLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(pnlSnacksLayout.createSequentialGroup()
-                                        .addComponent(btnFriedFishPasteBalls, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnCharcoalBoiledPorkNeck, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlSnacksLayout.createSequentialGroup()
-                                        .addComponent(btnFriedChicken, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnFriedPorkRind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlSnacksLayout.createSequentialGroup()
-                                        .addComponent(btnCrispyWonton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnSteamedSpringRoll, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                )
-        );
-        pnlSnacksLayout.setVerticalGroup(
-                pnlSnacksLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSnacksLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlSnacksLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnFriedFishPasteBalls, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnCharcoalBoiledPorkNeck, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlSnacksLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnFriedChicken, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnFriedPorkRind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlSnacksLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnCrispyWonton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnSteamedSpringRoll, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                )
-        );
-    }
-
-    protected void addBevaragesButton() {
-        GroupLayout pnlBevaragesLayout = new GroupLayout(pnlMenuButton);
-        pnlMenuButton.setLayout(pnlBevaragesLayout);
-        pnlBevaragesLayout.setHorizontalGroup(
-                pnlBevaragesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBevaragesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlBevaragesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(pnlBevaragesLayout.createSequentialGroup()
-                                        .addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnPepsi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlBevaragesLayout.createSequentialGroup()
-                                        .addComponent(btnSprite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnFanta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlBevaragesLayout.createSequentialGroup()
-                                        .addComponent(btnSoda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnGreenTea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                )
-        );
-        pnlBevaragesLayout.setVerticalGroup(
-                pnlBevaragesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBevaragesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlBevaragesLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnWater, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnPepsi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlBevaragesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSprite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnFanta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlBevaragesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSoda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnGreenTea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                )
-        );
-    }
-
-    protected void addFoodsButton() {
-        GroupLayout pnlFoodsLayout = new GroupLayout(pnlMenuButton);
-        pnlMenuButton.setLayout(pnlFoodsLayout);
-        pnlFoodsLayout.setHorizontalGroup(
-                pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                                        .addComponent(btnRice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnCasseroledPrawns, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                                        .addComponent(btnSteamedDuck, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnFriedFishToppedWithChilliSauce, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                                        .addComponent(btnSpicyVermicelliSalad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnChickenGreenCurry, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                                        .addComponent(btnClearSoup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnMincedPorkOmelet, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                                        .addComponent(btnFriedCrabinYellowCurry, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnDeepFriendShrimpCakes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                                        .addComponent(btnTomYumKung, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        )
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                )
-        );
-        pnlFoodsLayout.setVerticalGroup(
-                pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(pnlFoodsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnRice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnCasseroledPrawns, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSteamedDuck, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnFriedFishToppedWithChilliSauce, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSpicyVermicelliSalad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnChickenGreenCurry, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnClearSoup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnMincedPorkOmelet, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnFriedCrabinYellowCurry, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnDeepFriendShrimpCakes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFoodsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(btnTomYumKung, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                )
-        );
-    }
     
-
     private void deleteSelectedRow(javax.swing.JTable tbl, javax.swing.JLabel lbl, int row) {
         int res = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure you want to delete row " + (tbl.getSelectedRow() + 1) + " ?", "Please Confirm", javax.swing.JOptionPane.YES_NO_OPTION);
         switch (res) {

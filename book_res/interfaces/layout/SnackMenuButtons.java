@@ -1,6 +1,6 @@
 package book_res.interfaces.layout;
 
-import book_res.interfaces.MainFace;
+import book_res.interfaces.ReserveFace;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,33 +8,33 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 
-class SnackMenuButtons extends MenuTemplate {
+public class SnackMenuButtons extends MenuTemplate {
 
-	public SnackMenuButtons(MainFace f, ArrayList<HashMap<String, String>> buttons) {
-		super(f);
+	public SnackMenuButtons(ArrayList<HashMap<String,String>> buttons) {
+		super();
 		for (HashMap<String, String> b : buttons) {
-			createButton(b.get("Name"), Double.parseDouble(b.get("Price")));
+			createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")));
 		}
 		setPanel();
 	}
-
-	@Override
-	protected void createButton(String n, double price) {
-		JButton b = new JButton();
-		b.setText(n);
-		b.setPreferredSize(new Dimension(170, 50));
-		/*addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				addMenu(b, price);
-			}
-		});*/
-		allMenus.add(b);
-	}
+        
+    @Override
+    protected void createButton(String n, double price) {
+        JButton b = new JButton();
+        b.setText(n);
+        b.setPreferredSize(new Dimension(170, 50));
+        /*addMouseListener(new MouseAdapter() {
+         public void mouseClicked(MouseEvent e) {
+         addMenu(b, price);
+         }
+         });*/
+        allMenus.add(b);
+    }
 
 	@Override
 	protected void setPanel() {
-		GroupLayout snackLayout = new GroupLayout(panel);
-		panel.setLayout(snackLayout);
+		GroupLayout snackLayout = new GroupLayout(ReserveFace.pnlMenuButton);
+		ReserveFace.pnlMenuButton.setLayout(snackLayout);
 		snackLayout.setHorizontalGroup(
 			snackLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(snackLayout.createSequentialGroup()
@@ -74,7 +74,7 @@ class SnackMenuButtons extends MenuTemplate {
 				)
 		);
 	}
-
+        
 	/*protected void addMenu(JButton b, double price) {
 		DefaultTableModel model = (DefaultTableModel) tblFoodMenu.getModel();
 
