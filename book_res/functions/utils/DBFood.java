@@ -31,10 +31,10 @@ public class DBFood extends ConnectDB{
         return String.valueOf(name.get("foodName"));
     }
     
-    public int getPrice(int foodID) {
+    public String getPrice(int foodID) {
         String sql = "SELECT price FROM OOSD_FOODS WHERE foodID = " + foodID;
         HashMap price = db.queryRow(sql);
-        return Integer.parseInt(String.valueOf(price.get("price")));
+        return String.valueOf(price.get("price"));
     }
     
     public int getOrdered(int foodID) {

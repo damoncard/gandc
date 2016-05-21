@@ -5,19 +5,26 @@
  */
 package book_res.interfaces;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.WindowConstants;
 
 /**
  *
  * @author eawarnong
  */
-public class Main extends SimpleFace{
+public class Main extends SimpleFace {
 
     private JButton backlogButton;
     private JButton billingButton;
@@ -30,10 +37,12 @@ public class Main extends SimpleFace{
     public static JPanel contentPane;
     private JPanel menuTab;
     CollectMainMenu menu;
-    
+    private Timer timer;
+
     public Main() {
         super("Restaurant", WindowConstants.EXIT_ON_CLOSE);
         menu.getReserve();
+        setTime();
     }
 
     @Override
@@ -85,7 +94,8 @@ public class Main extends SimpleFace{
         backlogButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backlogButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backlogButtonMouseClicked(evt);
+                contentPane.removeAll();
+                menu.getBacklog();
             }
         });
 
@@ -175,15 +185,22 @@ public class Main extends SimpleFace{
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, -1, -1));
         pack();
     }
-    
-        private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    private void setTime() {
+        timer = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                DateFormat timeFormat = new SimpleDateFormat("dd-MM-yyyy   HH:mm:ss");
+                Calendar currentTime = new GregorianCalendar();
+                currentTime.add(Calendar.YEAR, -543);
+                lblClock.setText(timeFormat.format(currentTime.getTime()));
+            }
+        });
+        timer.start();
+    }
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //Queuing.disConnectDb();
     }//GEN-LAST:event_formWindowClosing
-
-    private void backlogButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backlogButtonMouseClicked
-        contentPane.removeAll();
-        //initBacklog();
-    }//GEN-LAST:event_backlogButtonMouseClicked
 
     private void popularButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popularButtonMouseClicked
         contentPane.removeAll();

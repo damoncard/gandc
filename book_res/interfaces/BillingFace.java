@@ -1,5 +1,6 @@
 package book_res.interfaces;
 
+import book_res.functions.Comma;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -739,37 +740,6 @@ public class BillingFace implements MainMenu {
 //        }
     }
 
-    protected String removeComma(String s) {
-        if (!s.equals("")) {
-            int num = 0;
-            try {
-                NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
-                Number number = format.parse(s);
-                num = number.intValue();
-            } catch (ParseException e) {
-            }
-            return num + "";
-        } return "";
-    }
-
-    protected String putComma(String s) {
-        String res = "";
-        System.out.println(s + " " + s.length());
-        if (s.length() <= 3) {
-            return s + ".00-";
-        } else {
-            int cnt = 0;
-            for (int i = s.length() - 1; i >= 0; i--) {
-                cnt++;
-                res = s.charAt(i) + res;
-                if (cnt == 3 && i > 0) {
-                    res = "," + res;
-                    cnt = 0;
-                }
-            }
-            return res + ".00-";
-        }
-    }
 
     class ButtonCal extends JButton {
 
@@ -781,7 +751,7 @@ public class BillingFace implements MainMenu {
                     //if (!clickedEnter) {
                     int n = Integer.parseInt(getText());
                     if ((!lblCash.getText().equals("") && n == 0) || n != 0) {
-                        lblCash.setText(putComma((removeComma(lblCash.getText()) + getText())));
+                        lblCash.setText(Comma.putComma((Comma.removeComma(lblCash.getText()) + getText())));
                     }
                     //}
                 }
