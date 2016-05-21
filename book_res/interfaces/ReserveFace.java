@@ -1,7 +1,8 @@
 package book_res.interfaces;
 
+
 import book_res.functions.TableFuction;
-import java.awt.Color;
+import book_res.functions.utils.DBReserve;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +15,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class ReserveFace implements MainMenu{
 
     // Variable of reserve's part
-    private JButton btnCheck, btnClear, btnDone;
+    private static JButton btnDone;
+    private JButton btnCheck, btnClear;
     public JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel8,
             lblDate, lblTime, lblTotalFoodPrice, lblTotalBeveragePrice, lblTotalPrice;
     private JPanel jPanel1, jPanel2, jPanel4, jPanel5, jPanel6, jPanel7, pnlTableMenu;
@@ -26,11 +28,21 @@ public class ReserveFace implements MainMenu{
     private JButton[] foodTypeBtn;
     public static JButton[] btnFoodType;
     public static JPanel pnlMenuButton;
+    DBReserve reserve = new DBReserve();
+    TableFuction t;
+    int idTable;
+    String date;
+    String time;
+    
     
     public ReserveFace() {
+        t = new TableFuction();
+        idTable = t.getTableID();
+        date = t.getDate();
+        time = t.getTime();
         pnlTableMenu = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblBeverageMenu = new Table("Bevarage")
+        tblBeverageMenu = new Table("Bevarage");
         tblFoodMenu = new Table("Food");
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -340,12 +352,16 @@ public class ReserveFace implements MainMenu{
                     System.out.println(tblFoodMenu.getRowCount());
                     javax.swing.JOptionPane.showMessageDialog(null, "Please select orders");
                 } else {
-//                    customerId = queue.getCustomerId(txtName.getText());
-//                    setOrders(tblFoodMenu.getRowCount(), tblFoodMenu);
-//                    setOrders(tblBeverageMenu.getRowCount(), tblBeverageMenu);
-//                    queue.updateStatusTable(tableId);
-//                    resetToDefault();
-//                    javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
+                    reserve.insertReserving(idTable ,txtName.getText() ,date ,time);
+                    int row = tblFoodMenu.getRowCount();
+                    for(int i = 0;i <= row; i++){
+                        reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(row, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(row, 2))));
+                    }
+                    int row2 = tblBeverageMenu.getRowCount();
+                    for(int i = 0;i <= row; i++){
+                        reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(row, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(row, 2))));
+                    }
+                    javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
                 }
             }
         });

@@ -26,8 +26,8 @@ public class TableFuction extends ReserveFace {
 
     DBCheckTable checkTable;
     TableFace tableface;
-    static String time, date;
-    static int tableId;
+    private String time, date;
+    private int tableId;
     String message1 = "Avalible Table Number: ";
     String message2 = "Not Avalible";
     ArrayList<JButton> chairButtons;
@@ -41,6 +41,16 @@ public class TableFuction extends ReserveFace {
         chairButtons = tableface.getChairButtons();
         checkTable();
         checkSeat();
+    }
+    
+    public int getTableID() {
+        return tableId;
+    }
+    public String getTime() {
+        return time;
+    }
+    public String getDate() {
+        return date;
     }
 
     private void checkTable() {

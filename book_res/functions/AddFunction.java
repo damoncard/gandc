@@ -39,8 +39,8 @@ public class AddFunction {
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 4);
         }
         //ReserveFace total = new ReserveFace();
-        computePrice(total.lblTotalFoodPrice, price, "+");
-        computePrice(total.lblTotalPrice, price, "+");
+       // computePrice(total.lblTotalFoodPrice, price, "+");
+       // computePrice(total.lblTotalPrice, price, "+");
     }
 
     protected void computePrice(JLabel label, double price, String sign) {
