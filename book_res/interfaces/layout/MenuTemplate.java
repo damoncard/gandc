@@ -8,12 +8,14 @@ import javax.swing.JButton;
 public abstract class MenuTemplate {
 
 	protected ArrayList<JButton> allMenus;
+	protected AddFunction af;
 
 	public MenuTemplate() {
 		allMenus = new ArrayList<JButton>();
-                ReserveFace.pnlMenuButton.removeAll();
+		af = new AddFunction();
+		ReserveFace.pnlMenuButton.removeAll();
 	}
-        
-        protected abstract void createButton(String n, double price);
+		
+	protected abstract void createButton(String n, double price);
 	protected abstract void setPanel();
 }

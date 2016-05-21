@@ -10,26 +10,22 @@ import javax.swing.JButton;
 
 public class SnackMenuButtons extends MenuTemplate {
 
-	public SnackMenuButtons(ArrayList<HashMap<String,String>> buttons) {
-		super();
+	public SnackMenuButtons(ArrayList<HashMap<String,String>> buttons, JTable t) {
+        super();
 		for (HashMap<String, String> b : buttons) {
-			createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")));
+			createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")), t);
 		}
 		setPanel();
 	}
-        
-    @Override
-    protected void createButton(String n, double price) {
-        JButton b = new JButton();
-        b.setText(n);
-        b.setPreferredSize(new Dimension(170, 50));
-        /*addMouseListener(new MouseAdapter() {
-         public void mouseClicked(MouseEvent e) {
-         addMenu(b, price);
-         }
-         });*/
-        allMenus.add(b);
-    }
+		
+	@Override
+	protected void createButton(String n, double price, JTable t) {
+		JButton b = new JButton();
+		b.setText(n);
+		b.setPreferredSize(new Dimension(170, 50));
+		af.addMenu(b, price, t);
+		allMenus.add(b);
+	}
 
 	@Override
 	protected void setPanel() {
@@ -74,7 +70,7 @@ public class SnackMenuButtons extends MenuTemplate {
 				)
 		);
 	}
-        
+		
 	/*protected void addMenu(JButton b, double price) {
 		DefaultTableModel model = (DefaultTableModel) tblFoodMenu.getModel();
 

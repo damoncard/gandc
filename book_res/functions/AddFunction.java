@@ -11,17 +11,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class AddFunction {
     
-    private void AddMenu(JButton add) {
+    public void addMenu(JButton add, double price, JTable t) {
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+               addToTable(add, price, t);
             } 
         });
-    }
- 
+    } 
 
-    private void addMenu(JButton btn, int price, JTable tblMenu) {
+    private void addToTable(JButton btn, int price, JTable tblMenu) {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
 
         for (int i = 0; i < model.getRowCount(); i++) {
@@ -57,7 +56,7 @@ public class AddFunction {
             }
             else {
                 totalPrice -= price;
-	    }
+	   }
           }
 
             if (totalPrice == 0) {

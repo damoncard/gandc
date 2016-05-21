@@ -11,23 +11,19 @@ import javax.swing.JButton;
 
 public class FoodMenuButtons extends MenuTemplate {
 
-    public FoodMenuButtons(ArrayList<HashMap<String, String>> buttons) {
-        super();
+    public FoodMenuButtons(ArrayList<HashMap<String, String>> buttons, JTable t) {
+        super(t);
         for (HashMap<String, String> b : buttons) {
-            createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")));
+            createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")), t);
         }
         setPanel();
     }
 
-    protected void createButton(String n, double price) {
+    protected void createButton(String n, double price, JTable t) {
         JButton b = new JButton();
         b.setText(n);
         b.setPreferredSize(new Dimension(170, 50));
-        /*addMouseListener(new MouseAdapter() {
-         public void mouseClicked(MouseEvent e) {
-         addMenu(b, price);
-         }
-         });*/
+        af.addMenu(b, price, t);
         allMenus.add(b);
     }
 

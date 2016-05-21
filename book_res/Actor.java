@@ -11,11 +11,11 @@ public class Actor {
 	// Gui Objects
 	private static LogFace logface = new LogFace();
 	private static TableFace tableface = new TableFace();
-        private static ReserveFace reserveface = new ReserveFace();
-        
+	private static ReserveFace reserveface = new ReserveFace();
+		
 	// Function Objects
 	private static LogIn login = new LogIn();
-        private static FoodFunction ff = new FoodFunction();
+	private static FoodFunction ff = new FoodFunction();
 
 	// This Object
 	private static Actor actor = new Actor();
@@ -36,13 +36,13 @@ public class Actor {
 
 	public static void main(String[] args) {
 		//actor.start();
-            Main m = new Main();
-            ff.setButtons(reserveface.getFoodTypeBtn());
-//            System.out.println(reserveface.getMenuButtons()[0].getText());
-//            System.out.println(reserveface.getMenuButtons()[1].getText());
-//            System.out.println(reserveface.getMenuButtons()[2].getText());
-            //System.out.println(reserveface.getFoodTypeBtn()[0].getText());
-            m.setVisible(true);
+			Main m = new Main();
+			ff.setButtons(reserveface.getFoodTypeBtn(), reserveface.getTable());
+//			System.out.println(reserveface.getMenuButtons()[0].getText());
+//			System.out.println(reserveface.getMenuButtons()[1].getText());
+//			System.out.println(reserveface.getMenuButtons()[2].getText());
+			//System.out.println(reserveface.getFoodTypeBtn()[0].getText());
+			m.setVisible(true);
 	}
 
 	/*

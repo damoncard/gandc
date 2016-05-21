@@ -13,46 +13,42 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-/**
- *
- * @author Default141
- */
 public class FoodFunction {
 
     FoodList food;
  
-    public void setButtons(JButton b[]) {
+    public void setButtons(JButton b[], JTable[] t) {
         food = new FoodList();
-            setSnackButton(b[0]);
-            setFoodButton(b[1]);
-            setBeverageButton(b[2]);
+            setSnackButton(b[0], t[0]);
+            setFoodButton(b[1], t[0]);
+            setBeverageButton(b[2], t[1]);
 
 
     }
 
-    private void setFoodButton(JButton b) {
+    private void setFoodButton(JButton b, JTable t) {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FoodMenuButtons(food.getFoodList());
+                new FoodMenuButtons(food.getFoodList(), t);
             }
         });
     }
     
-    private void setSnackButton(JButton b) {
+    private void setSnackButton(JButton b, JTable t) {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SnackMenuButtons(food.getSnackList());
+                new SnackMenuButtons(food.getSnackList(), t);
             }
         });
     }
     
-    private void setBeverageButton(JButton b) {
+    private void setBeverageButton(JButton b, JTable t) {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BeveragesMenuButtons(food.getBevarageList());
+                new BeveragesMenuButtons(food.getBevarageList(), t);
             }
         });
     }

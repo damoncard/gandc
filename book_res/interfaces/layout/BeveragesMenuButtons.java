@@ -10,24 +10,20 @@ import javax.swing.JButton;
 
 public class BeveragesMenuButtons extends MenuTemplate {
 
-    public BeveragesMenuButtons(ArrayList<HashMap<String, String>> buttons) {
+    public BeveragesMenuButtons(ArrayList<HashMap<String, String>> buttons, JTable t) {
         super();
         for (HashMap<String, String> b : buttons) {
-            createButton(String.valueOf(b.get("NAME")), Double.parseDouble(String.valueOf(b.get("PRICE"))));
+            createButton(String.valueOf(b.get("NAME")), Double.parseDouble(String.valueOf(b.get("PRICE"))), t);
         }
         setPanel();
     }
 
     @Override
-    protected void createButton(String n, double price) {
+    protected void createButton(String n, double price, JTable t) {
         JButton b = new JButton();
         b.setText(n);
         b.setPreferredSize(new Dimension(170, 50));
-        /*addMouseListener(new MouseAdapter() {
-         public void mouseClicked(MouseEvent e) {
-         addMenu(b, price);
-         }
-         });*/
+        af.addMenu(b, price, t);
         allMenus.add(b);
     }
 

@@ -64,6 +64,10 @@ public class ReserveFace implements MainMenu{
         btnFoodType = new JButton[]{btnSnacks, btnFoods, btnBeverages};
         
     }
+
+    public JTable[] getTables() {
+        return new JTable[] {tblFoodMenu, tblBeverageMenu};
+    }
     
     public JButton[] getFoodTypeBtn() {
         return btnFoodType;
