@@ -15,7 +15,7 @@ public class ReserveFace implements MainMenu{
 
     // Variable of reserve's part
     private JButton btnCheck, btnClear, btnDone;
-    private JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel8,
+    public JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel8,
             lblDate, lblTime, lblTotalFoodPrice, lblTotalBeveragePrice, lblTotalPrice;
     private JPanel jPanel1, jPanel2, jPanel4, jPanel5, jPanel6, jPanel7, pnlTableMenu;
     private JScrollPane jScrollPane1, jScrollPane2, jScrollPane3;

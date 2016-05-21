@@ -1,9 +1,7 @@
 package book_res.functions;
 
 
-import static book_res.functions.TableFuction.tableId;
 import book_res.interfaces.ReserveFace;
-import static book_res.interfaces.ReserveFace.lblTableNo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -42,9 +40,9 @@ public class AddFunction {
             tblMenu.setValueAt(1, model.getRowCount() - 1, 3);
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 4);
         }
-        
-        //computePrice(lblTotalFoodPrice, price, "+");
-        //computePrice(lblTotalPrice, price, "+");
+        ReserveFace total = new ReserveFace();
+        computePrice(total.lblTotalFoodPrice, price, "+");
+        computePrice(total.lblTotalPrice, price, "+");
     }
 
     protected void computePrice(JLabel label, double price, String sign) {
@@ -53,7 +51,7 @@ public class AddFunction {
         if (label.getText().equals("")) {
             totalPrice = price;
         } else {
-            totalPrice = Integer.parseInt(String.valueOf(label.getText()));
+            totalPrice = Integer.parseInt(Comma.removeComma((String.valueOf(label.getText()))));
             if (sign.equals("+")) {
                 totalPrice += price;
             }
@@ -63,9 +61,9 @@ public class AddFunction {
           }
 
             if (totalPrice == 0) {
-                label.setText("");
+            label.setText("");
             } else {
-                label.setText(""+totalPrice);
+                label.setText(Comma.putComma(""+totalPrice));
             }
         }
     }
