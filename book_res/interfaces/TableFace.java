@@ -222,6 +222,6 @@ public class TableFace extends SimpleFace {
 		JButton btemp = new JButton();
 		btemp.setText(String.valueOf(seats));
 		btemp.setPreferredSize(new Dimension(50, 25));
-		return b;
+		return btemp;
 	}
 }
