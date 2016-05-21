@@ -1,6 +1,11 @@
 package book_res.interfaces;
 
 import book_res.functions.Comma;
+import book_res.functions.utils.DBBilling;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -8,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class BillingFace implements MainMenu {
 
@@ -23,6 +29,11 @@ public class BillingFace implements MainMenu {
     private JSpinner spnDate;
     private JTable tblBilling, tblgetTables;
     private boolean clickedEnter;
+    private ArrayList<Integer> reserveID;
+    private int row;
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    DBBilling billing;
 
     public void init() {
         jPanel8 = new javax.swing.JPanel();
@@ -71,6 +82,8 @@ public class BillingFace implements MainMenu {
         jScrollPane5 = new javax.swing.JScrollPane();
         tblgetTables = new javax.swing.JTable();
         clickedEnter = false;
+        billing = new DBBilling();
+        reserveID = new ArrayList<>();
 
         spnDate = new javax.swing.JSpinner(new javax.swing.SpinnerDateModel());
         javax.swing.JSpinner.DateEditor dateEditor = new javax.swing.JSpinner.DateEditor(spnDate, "dd-MM-yyyy");
@@ -178,11 +191,11 @@ public class BillingFace implements MainMenu {
                         .addContainerGap())
         );
 
-        jLabel7.setText("DATE / TIMEOUT");
+        jLabel7.setText("DATE / TIMEOUT :  ");
 
-        jLabel9.setText("Customer's name");
+        jLabel9.setText("Customer's name :  ");
 
-        jLabel10.setText("Table No.");
+        jLabel10.setText("Table No. :  ");
 
         GroupLayout jPanel9Layout = new GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -242,7 +255,7 @@ public class BillingFace implements MainMenu {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
         );
-        
+
         btnCE.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCE.setText("CE");
         btnCE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -274,8 +287,7 @@ public class BillingFace implements MainMenu {
         btnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblChange.setText("");
-
-                double change = Double.parseDouble(Comma.removeComma(lblCash.getText())) - Double.parseDouble(Comma.removeComma(lblTotal.getText()));
+                int change = Integer.parseInt(Comma.removeComma(lblCash.getText())) - Integer.parseInt(Comma.removeComma(lblTotal.getText()));
                 if (lblCash.getText().equals("") || lblTotal.getText().equals("")) {
                 } else if (change < 0.0) {
                     javax.swing.JOptionPane.showMessageDialog(null, "Not Enough");
@@ -375,13 +387,8 @@ public class BillingFace implements MainMenu {
         billingButtonDone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (clickedEnter) {
-                    java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-                    java.util.Calendar date = new java.util.GregorianCalendar();
-                    date.setTime((java.util.Date) spnDate.getValue());
-                    date.add(java.util.Calendar.YEAR, -543);
-//                    queue.removeOrders(dateFormat.format(date.getTime()) + " " + String.valueOf(lbldateTime.getText()).substring(16), Integer.parseInt(lblTable.getText().substring(4)));
-//                    queue.updateBacklog(dateFormat.format(date.getTime()), removeComma(lblTotal.getText()), Integer.parseInt(lblTable.getText().substring(4)) / 100);
-//                    updatePopularFood();
+                    billing.updateBacklog(dateFormat.format(spnDate.getValue()), Integer.parseInt(Comma.removeComma(lblTotal.getText())), Integer.parseInt(lblTable.getText()));
+                    billing.removeOrder(reserveID.get(row));
                     resetBillToDefault();
                     checkTable();
                 }
@@ -393,7 +400,7 @@ public class BillingFace implements MainMenu {
         btnDis10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 double total = 90 * Double.parseDouble(lblTotal.getText()) / 100;
-                lblTotal.setText(String.format("%,.2f", total));
+                lblTotal.setText(Comma.putComma(total + ""));
             }
         });
 
@@ -402,7 +409,7 @@ public class BillingFace implements MainMenu {
         btnDis20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 double total = 80 * Double.parseDouble(lblTotal.getText()) / 100;
-                lblTotal.setText(String.format("%,.2f", total));
+                lblTotal.setText(Comma.putComma(total + ""));
             }
         });
 
@@ -458,47 +465,43 @@ public class BillingFace implements MainMenu {
                 return canEdit[columnIndex];
             }
         });
-        tblgetTables.getColumnModel().getColumn(0).setPreferredWidth(30);
-        tblgetTables.getColumnModel().getColumn(1).setPreferredWidth(190);
-        tblgetTables.getColumnModel().getColumn(2).setPreferredWidth(40);
-        tblgetTables.getColumnModel().getColumn(3).setPreferredWidth(40);
+        tblgetTables.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblgetTables.getColumnModel().getColumn(1).setPreferredWidth(160);
+        tblgetTables.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblgetTables.getColumnModel().getColumn(3).setPreferredWidth(50);
         ((javax.swing.table.DefaultTableCellRenderer) tblgetTables.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tblgetTables.addMouseListener(new java.awt.event.MouseAdapter() {
-//            public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                if (!clickedEnter) {
-//                    int row = tblgetTables.getSelectedRow();
-//                    int total = 0;
-//                    java.util.ArrayList<java.util.HashMap> billing = queue.getBilling(Integer.parseInt(String.valueOf(tblgetTables.getValueAt(row, 0))), String.valueOf(tblgetTables.getValueAt(row, 1)));
-//                    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblBilling.getModel();
-//                    deleteAllRow(model);
-//
-//                    int line = 0;
-//                    for (java.util.HashMap bill : billing) {
-//                        model.addRow(new Object[0]);
-//                        model.setValueAt(" " + Integer.parseInt(String.valueOf(bill.get("qty"))), line, 0);
-//                        model.setValueAt(" " + String.valueOf(bill.get("foodName")), line, 1);
-//                        model.setValueAt(String.format("%,.2f", Integer.parseInt(String.valueOf(bill.get("total")))), line, 2);
-//                        line++;
-//
-//                        total += Integer.parseInt(String.valueOf(bill.get("total")));
-//                    }
-//
-//                    lbldateTime.setText("");
-//                    lblCustomerName.setText("");
-//                    lblTable.setText("");
-//
-//                    java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd-MM-yyyy");
-//                    java.util.Calendar date = new java.util.GregorianCalendar();
-//                    date.setTime((java.util.Date) (spnDate.getValue()));
-//                    date.add(java.util.Calendar.YEAR, -543);
-//                    lbldateTime.setText(":  " + String.valueOf(dateFormat.format(date.getTime())) + "   " + String.valueOf(tblgetTables.getValueAt(row, 3)));
-//                    lblCustomerName.setText(" :  " + String.valueOf(tblgetTables.getValueAt(row, 1)));
-//                    lblTable.setText(" :  " + String.valueOf(tblgetTables.getValueAt(row, 0)));
-//
-//                    lblTotal.setText(String.format("%,.2f", total));
-//                }
-//            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (!clickedEnter) {
+                    billing.connect();
+                    row = tblgetTables.getSelectedRow();
+                    int total = 0;
+                    ArrayList<HashMap> bills = billing.getBilling(reserveID.get(row));
+                    DefaultTableModel model = (DefaultTableModel) tblBilling.getModel();
+                    deleteAllRow(model);
+                    int line = 0;
+                    for (java.util.HashMap bill : bills) {
+                        model.addRow(new Object[0]);
+                        model.setValueAt(" " + Integer.parseInt(String.valueOf(bill.get("quantity"))), line, 0);
+                        model.setValueAt(" " + String.valueOf(bill.get("foodName")), line, 1);
+                        model.setValueAt(Comma.putComma(String.valueOf(bill.get("total"))), line, 2);
+                        line++;
+
+                        total += Integer.parseInt(String.valueOf(bill.get("total")));
+                    }
+
+                    lbldateTime.setText("");
+                    lblCustomerName.setText("");
+                    lblTable.setText("");
+
+                    lbldateTime.setText(dateFormat.format(spnDate.getValue()) + "   " + String.valueOf(tblgetTables.getValueAt(row, 3)));
+                    lblCustomerName.setText(String.valueOf(tblgetTables.getValueAt(row, 1)));
+                    lblTable.setText(String.valueOf(tblgetTables.getValueAt(row, 0)));
+
+                    lblTotal.setText(Comma.putComma(total + ""));
+                }
+            }
 
         });
 
@@ -578,7 +581,6 @@ public class BillingFace implements MainMenu {
                 .addComponent(jPanel8, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        //getContentPane().add(Main.contentPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 114, 855, 525));
     }
 
     private void resetBillToDefault() {
@@ -589,8 +591,8 @@ public class BillingFace implements MainMenu {
         lblTotal.setText("");
         lblCash.setText("");
         lblChange.setText("");
-        deleteAllRow((javax.swing.table.DefaultTableModel) tblgetTables.getModel());
-        deleteAllRow((javax.swing.table.DefaultTableModel) tblBilling.getModel());
+        deleteAllRow((DefaultTableModel) tblgetTables.getModel());
+        deleteAllRow((DefaultTableModel) tblBilling.getModel());
     }
 
     private void deleteAllRow(javax.swing.table.DefaultTableModel model) {
@@ -600,22 +602,26 @@ public class BillingFace implements MainMenu {
     }
 
     private void checkTable() {
-//        java.util.ArrayList<java.util.HashMap> tables = queue.getOrders((java.util.Date) (spnDate.getValue()));
-//        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblgetTables.getModel();
-//        deleteAllRow(model);
-//        int line = 0;
-//        if (tables != null) {
-//            for (java.util.HashMap table : tables) {
-//                model.addRow(new Object[0]);
-//                model.setValueAt(Integer.parseInt(String.valueOf(table.get("tableID"))), line, 0);
-//                model.setValueAt(queue.getCustomerName(Integer.parseInt(String.valueOf(table.get("customerID")))), line, 1);
-//                model.setValueAt(String.valueOf(table.get("dateTimeReserve")).substring(11, 19), line, 2);
-//                model.setValueAt(String.valueOf(table.get("timeOut")).substring(11, 19), line, 3);
-//                line++;
-//            }
-//        }
-    }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(spnDate.getValue());
+        ArrayList<HashMap> tables = billing.getReserve(date);
+        DefaultTableModel model = (DefaultTableModel) tblgetTables.getModel();
+        deleteAllRow(model);
+        int line = 0;
+        if (tables != null) {
+            reserveID.clear();
+            for (java.util.HashMap table : tables) {
+                model.addRow(new Object[0]);
+                model.setValueAt(Integer.parseInt(String.valueOf(table.get("tableID"))), line, 0);
+                model.setValueAt(String.valueOf(table.get("customerName")), line, 1);
+                model.setValueAt(String.valueOf(table.get("timeReserve")), line, 2);
+                model.setValueAt(String.valueOf(table.get("timeout")), line, 3);
+                reserveID.add(Integer.parseInt(String.valueOf(table.get("reserveID"))));
+                line++;
+            }
 
+        }
+    }
 
     class ButtonCal extends JButton {
 
@@ -624,12 +630,12 @@ public class BillingFace implements MainMenu {
             setText(num);
             addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    //if (!clickedEnter) {
-                    int n = Integer.parseInt(getText());
-                    if ((!lblCash.getText().equals("") && n == 0) || n != 0) {
-                        lblCash.setText(Comma.putComma((Comma.removeComma(lblCash.getText()) + getText())));
+                    if (!clickedEnter) {
+                        int n = Integer.parseInt(getText());
+                        if ((!lblCash.getText().equals("") && n == 0) || n != 0) {
+                            lblCash.setText(Comma.putComma((Comma.removeComma(lblCash.getText()) + getText())));
+                        }
                     }
-                    //}
                 }
             });
         }
