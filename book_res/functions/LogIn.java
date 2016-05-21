@@ -30,7 +30,7 @@ public class LogIn {
 			public void actionPerformed(ActionEvent e) {
 				checkLogIn(x);
                                 x.dispose();
-                                log.disconnect();
+                                //log.disconnect();
 			}
 		});
     }
