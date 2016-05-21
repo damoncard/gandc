@@ -42,7 +42,7 @@ public class Main extends SimpleFace {
     public Main() {
         super("Restaurant", WindowConstants.EXIT_ON_CLOSE);
         menu.getReserve();
-        setTime();
+        setTheTime();
     }
     
 
@@ -177,7 +177,7 @@ public class Main extends SimpleFace {
         pack();
     }
 
-    private void setTime() {
+    private void setTheTime() {
         timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DateFormat timeFormat = new SimpleDateFormat("dd-MM-yyyy   HH:mm:ss");
