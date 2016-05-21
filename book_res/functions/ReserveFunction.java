@@ -1,9 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * T11o change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package book_res.functions;
+/*package book_res.functions;
 
 
 import static book_res.functions.TableFuction.date;
@@ -19,7 +19,7 @@ import javax.swing.JButton;
  *
  * @author Default141
  */
-public class ReserveFunction {
+/*public class ReserveFunction {
     ReserveFace n = new ReserveFace();
     int idTable = tableId;
     String name = n.txtName.getText();
@@ -39,4 +39,4 @@ public class ReserveFunction {
         });
     } 
     
-}
+}*/

@@ -1,5 +1,6 @@
 package book_res.functions;
 
+import book_res.interfaces.ReserveFace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -38,7 +39,7 @@ public class AddFunction {
             tblMenu.setValueAt(1, model.getRowCount() - 1, 3);
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 4);
         }
-        //ReserveFace total = new ReserveFace();
+        ReserveFace total = new ReserveFace();
         computePrice(total.lblTotalFoodPrice, price, "+");
         computePrice(total.lblTotalPrice, price, "+");
     }
