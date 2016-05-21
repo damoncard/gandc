@@ -8,11 +8,12 @@ import java.util.HashMap;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class FoodMenuButtons extends MenuTemplate {
 
     public FoodMenuButtons(ArrayList<HashMap<String, String>> buttons, JTable t) {
-        super(t);
+        super();
         for (HashMap<String, String> b : buttons) {
             createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")), t);
         }

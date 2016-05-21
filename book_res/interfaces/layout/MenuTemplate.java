@@ -1,9 +1,10 @@
 package book_res.interfaces.layout;
 
+import book_res.functions.AddFunction;
 import book_res.interfaces.ReserveFace;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public abstract class MenuTemplate {
 
@@ -16,6 +17,6 @@ public abstract class MenuTemplate {
 		ReserveFace.pnlMenuButton.removeAll();
 	}
 		
-	protected abstract void createButton(String n, double price);
+	protected abstract void createButton(String n, double price, JTable t);
 	protected abstract void setPanel();
 }

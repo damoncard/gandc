@@ -21,7 +21,7 @@ public class ReserveFace implements MainMenu{
     private JScrollPane jScrollPane1, jScrollPane2, jScrollPane3;
     public static JLabel lblReserve, lblTableNo;
     public static JButton btnFoods, btnSnacks, btnBeverages;
-    private Table tblFoodMenu, tblBeverageMenu;
+    private static Table tblFoodMenu, tblBeverageMenu;
     private JTextField txtName;
     private JButton[] foodTypeBtn;
     public static JButton[] btnFoodType;

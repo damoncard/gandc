@@ -20,7 +20,7 @@ public class AddFunction {
         });
     } 
 
-    private void addToTable(JButton btn, int price, JTable tblMenu) {
+    private void addToTable(JButton btn, double price, JTable tblMenu) {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
 
         for (int i = 0; i < model.getRowCount(); i++) {

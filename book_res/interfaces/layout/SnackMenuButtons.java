@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class SnackMenuButtons extends MenuTemplate {
 
