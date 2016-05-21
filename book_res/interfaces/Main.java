@@ -180,16 +180,6 @@ public class Main extends SimpleFace{
         //Queuing.disConnectDb();
     }//GEN-LAST:event_formWindowClosing
 
-    private void reserveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reserveButtonMouseClicked
-        contentPane.removeAll();
-        //initReserve();
-    }//GEN-LAST:event_reserveButtonMouseClicked
-
-    private void billingButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingButtonMouseClicked
-        contentPane.removeAll();
-        //initBilling();
-    }//GEN-LAST:event_billingButtonMouseClicked
-
     private void backlogButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backlogButtonMouseClicked
         contentPane.removeAll();
         //initBacklog();

@@ -8,7 +8,7 @@ import book_res.functions.*;
 public class Actor {
 
 	// Gui Objects
-	private static LogTheFace logface = new LogFace();
+	private static LogFace logface = new LogFace();
 	private static TableFace tableface = new TableFace();
 
 	// Function Objects

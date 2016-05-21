@@ -7,13 +7,15 @@ import java.util.HashMap;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import book_res.functions.FoodList;
 
-class BeveragesMenuButtons extends MenuTemplate {
+public class BeveragesMenuButtons extends MenuTemplate {
 
-	public BeveragesMenuButtons(MainFace f, ArrayList<HashMap<String, String>> buttons) {
+	public BeveragesMenuButtons(MainFace f, ArrayList<HashMap> buttons) {
 		super(f);
-		for (HashMap<String, String> b : buttons) {
-			createButton(b.get("Name"), Double.parseDouble(b.get("Price")));
+		for (HashMap b : buttons) {
+			createButton(String.valueOf(b.get("NAME")), Double.parseDouble(String.valueOf(b.get("PRICE"))));
+                        System.out.println(b);
 		}
 		setPanel();
 	}

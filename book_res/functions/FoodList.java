@@ -14,7 +14,17 @@ import java.util.HashMap;
  * @author Default141
  */
 public class FoodList {
-    static DBFood foodlist = new DBFood();
+    private DBFood foodlist;
+    /*
+    public static void main(String[]args) {
+        FoodList f = new FoodList();
+        System.out.println(f.getBevarageList());
+    }
+    */
+    public FoodList() {
+        foodlist = new DBFood();
+        foodlist.connect();
+    }
     
     public ArrayList<HashMap> getFoodList() {
         return list(foodlist.getAllFoodIDs());
@@ -38,6 +48,7 @@ public class FoodList {
             foodHash.put("PRICE", foodlist.getPrice(id));
             foodList.add(foodHash);
         }
+        foodlist.disconnect();
         return foodList;
     }
 }
