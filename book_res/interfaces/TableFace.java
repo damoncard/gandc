@@ -219,9 +219,9 @@ public class TableFace extends SimpleFace {
 	}
 
 	private JButton buttonTemplate(int seats) {
-		JButton b = new JButton();
-		b.setText(String.valueOf(seats));
-		b.setPreferredSize(new Dimension(50, 25));
+		JButton btemp = new JButton();
+		btemp.setText(String.valueOf(seats));
+		btemp.setPreferredSize(new Dimension(50, 25));
 		return b;
 	}
 }
