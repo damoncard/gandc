@@ -1,7 +1,5 @@
 package book_res.functions;
 
-
-import book_res.interfaces.ReserveFace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -20,18 +18,19 @@ public class AddFunction {
         });
     } 
 
-    private void addToTable(JButton btn, int price, JTable tblMenu) {
+    private void addToTable(JButton b, int price, JTable tblMenu) {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
-
+        boolean found = false;
         for (int i = 0; i < model.getRowCount(); i++) {
-            if (btn.getText().equals(model.getValueAt(i, 1))) {
+            if (b.getText().equals(model.getValueAt(i, 1))) {
                 model.setValueAt(Integer.parseInt(String.valueOf((model.getValueAt(i, 3)))) + 1, i, 3);
                 model.setValueAt(price * Integer.parseInt(String.valueOf(model.getValueAt(i, 3))) + "", i, 4);
+                found = true;
                 break;
             }
         }
 
-        if (model.getRowCount() == 0/* || i >= model.getRowCount()*/) {
+        if (!found) {
             model.addRow(new Object[0]);
             tblMenu.setValueAt(model.getRowCount(), model.getRowCount() - 1, 0);
             tblMenu.setValueAt(btn.getText(), model.getRowCount() - 1, 1);
@@ -39,7 +38,7 @@ public class AddFunction {
             tblMenu.setValueAt(1, model.getRowCount() - 1, 3);
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 4);
         }
-        ReserveFace total = new ReserveFace();
+        //ReserveFace total = new ReserveFace();
         computePrice(total.lblTotalFoodPrice, price, "+");
         computePrice(total.lblTotalPrice, price, "+");
     }
