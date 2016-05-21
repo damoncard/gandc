@@ -37,7 +37,7 @@ public class Actor {
 	public static void main(String[] args) {
 		//actor.start();
 			Main m = new Main();
-			ff.setButtons(reserveface.getFoodTypeBtn(), reserveface.getTable());
+			ff.setButtons(reserveface.getFoodTypeBtn(), reserveface.getTables());
 //			System.out.println(reserveface.getMenuButtons()[0].getText());
 //			System.out.println(reserveface.getMenuButtons()[1].getText());
 //			System.out.println(reserveface.getMenuButtons()[2].getText());

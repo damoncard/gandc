@@ -5,6 +5,7 @@
  */
 package book_res.functions;
 
+import book_res.interfaces.ReserveFace;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,6 +14,8 @@ import java.util.HashMap;
  * @author Default141
  */
 public class ReserveFunction {
-    ArrayList<HashMap<String,String>> list = new ArrayList<>();
-    
+    TableFuction t = new TableFuction();
+    ReserveFace n = new ReserveFace();
+    //int tableId = t.
+    //String name = n.txtName.getText();
 }

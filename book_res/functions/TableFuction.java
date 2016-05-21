@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import book_res.functions.utils.DBCheckTable;
-import book_res.interfaces.CollectMainMenu;
-import book_res.interfaces.Main;
 import java.awt.Color;
 import java.util.ArrayList;
 import book_res.interfaces.ReserveFace;
