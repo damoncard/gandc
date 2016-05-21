@@ -44,7 +44,7 @@ public class DBReserve extends ConnectDB{
         return Integer.parseInt(String.valueOf(id.get("id")));
     }
 
-    public int getIDFromName(String name) {
+    public int getFoodIDFromName(String name) {
         String sql = "SELECT foodID FROM OOSD_FOODS WHERE foodName = '" + name + "'";
         HashMap foodName = db.queryRow(sql);
         return Integer.parseInt(String.valueOf(foodName.get("foodID")));

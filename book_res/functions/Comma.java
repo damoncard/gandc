@@ -21,7 +21,6 @@ public class Comma {
 
     public static String putComma(String s) {
         String res = "";
-        System.out.println(s + " " + s.length());
         if (s.length() <= 3) {
             return s + ".00-";
         } else {
