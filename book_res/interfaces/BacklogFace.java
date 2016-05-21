@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class BacklogFace implements MainMenu {
 
     // Variable of backlog's part
-    private JButton btnADay, btnAMonth, btnCheckBacklog, btnPopularFood;
+    private JButton btnADay, btnAMonth, btnCheckBacklog;
     private JPanel jPanel17, jPanel18, jPanel19;
     private JScrollPane jScrollPane6;
     private JSpinner spnBacklog;
@@ -28,7 +28,6 @@ public class BacklogFace implements MainMenu {
         jPanel17 = new javax.swing.JPanel();
         btnADay = new javax.swing.JButton();
         btnAMonth = new javax.swing.JButton();
-        btnPopularFood = new JButton();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblBacklog = new javax.swing.JTable();
@@ -63,13 +62,6 @@ public class BacklogFace implements MainMenu {
             }
         });
 
-        btnPopularFood.setText("POPULAR FOODS");
-        btnPopularFood.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                
-            }
-        });
-
         GroupLayout jPanel17Layout = new GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -78,8 +70,7 @@ public class BacklogFace implements MainMenu {
                         .addContainerGap()
                         .addGroup(jPanel17Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(btnADay, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                .addComponent(btnAMonth, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                .addComponent(btnPopularFood, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+                                .addComponent(btnAMonth, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                         .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -89,8 +80,6 @@ public class BacklogFace implements MainMenu {
                         .addComponent(btnADay, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAMonth, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPopularFood, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -99,14 +88,14 @@ public class BacklogFace implements MainMenu {
         tblBacklog.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "DATE", "No. of Customer", "Revenue", "Total"
+                    "DATE", "No. of Customer", "Revenue", "Total", "Popular Food"
                 }
         ) {
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -117,16 +106,17 @@ public class BacklogFace implements MainMenu {
                 return canEdit[columnIndex];
             }
         });
-        tblBacklog.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tblBacklog.getColumnModel().getColumn(1).setPreferredWidth(10);
-        tblBacklog.getColumnModel().getColumn(2).setPreferredWidth(60);
-        tblBacklog.getColumnModel().getColumn(3).setPreferredWidth(60);
+        tblBacklog.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblBacklog.getColumnModel().getColumn(1).setPreferredWidth(30);
+        tblBacklog.getColumnModel().getColumn(2).setPreferredWidth(30);
+        tblBacklog.getColumnModel().getColumn(3).setPreferredWidth(30);
+        tblBacklog.getColumnModel().getColumn(4).setPreferredWidth(110);
         tblBacklog.setFont(new java.awt.Font("Tahoma", 0, 14));
         ((javax.swing.table.DefaultTableCellRenderer) tblBacklog.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         javax.swing.table.DefaultTableCellRenderer leftRenderer = new javax.swing.table.DefaultTableCellRenderer();
         leftRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             tblBacklog.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
         }
 
@@ -168,6 +158,8 @@ public class BacklogFace implements MainMenu {
 
                     logs = backlog.getBacklogAMonth(dateFormat.format(date.getTime()));
                 }
+                
+                
 
                 if (logs != null) {
                     int total = 0;
@@ -180,6 +172,7 @@ public class BacklogFace implements MainMenu {
                         model.setValueAt(Comma.putComma(String.valueOf(log.get("revenue"))), line, 2);
                         total += Integer.parseInt(String.valueOf(log.get("revenue")));
                         model.setValueAt(Comma.putComma(total + ""), line, 3);
+                        model.setValueAt(log.get("foodName"), line, 4);
                         line++;
                     }
                 }
