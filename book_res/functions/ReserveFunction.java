@@ -5,17 +5,38 @@
  */
 package book_res.functions;
 
+
+import static book_res.functions.TableFuction.date;
+import static book_res.functions.TableFuction.tableId;
+import static book_res.functions.TableFuction.time;
+import book_res.functions.utils.DBReserve;
 import book_res.interfaces.ReserveFace;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
  * @author Default141
  */
 public class ReserveFunction {
-    TableFuction t = new TableFuction();
     ReserveFace n = new ReserveFace();
-    //int tableId = t.
-    //String name = n.txtName.getText();
+    int idTable = tableId;
+    String name = n.txtName.getText();
+    String d = date;
+    String t = time;
+    DBReserve insert = new DBReserve();
+    
+    
+    public void reserveFunction(JButton re, int idTable, String name, String date, String time) {
+        System.out.println(d);
+        re.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               insert.insertReserving(idTable, name, t, d);
+               insert.addOrders(1 , 1);
+            } 
+        });
+    } 
+    
 }
