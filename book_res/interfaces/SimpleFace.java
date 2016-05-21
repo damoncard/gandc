@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 abstract class SimpleFace extends JFrame {
 
-	private ImageOfIcon img = new ImageOfIcon("items/icon.jpg");
+	private ImageIcon img = new ImageIcon("items/icon.jpg");
 	protected final Color BLACK = new Color(0, 0, 0);
 	protected final Color GREY = new Color(102, 102, 102);
 	protected final Color PERIWINKLE_LIGHT = new Color(204, 204, 255);
