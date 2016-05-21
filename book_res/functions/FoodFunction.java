@@ -5,29 +5,32 @@
  */
 package book_res.functions;
 
+import book_res.interfaces.ReserveFace;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 /**
  *
  * @author Default141
  */
 public class FoodFunction {
-     public void actionPerformed(ActionEvent e) {
-            foodKindPerformed(1);
+     FoodList food = new FoodList();
+     public void buttonPerformed(ButtonActionListener e) {
+            ReserveFace reserveFace = new ReserveFace();
+            foodPerformed(reserveFace.getMenuButtons()[0]);
+            SnackPerformed(reserveFace.getMenuButtons()[1]);
+            BevaragePerformed(reserveFace.getMenuButtons()[2]);
      }
-     private ArrayList foodKindPerformed(int foodkind){
-         FoodList food = new FoodList();
-         if(foodkind == 1){
+     private ArrayList foodPerformed(JButton foodkind){
              return food.getFoodList();
-         }
-         if(foodkind == 2){
-             return food.getBevarageList();
-         }
-         if(foodkind == 3){
+     }
+     private ArrayList SnackPerformed(JButton foodkind){
              return food.getSnackList();
-         }
-         else
-             return null;
+     }
+      private ArrayList BevaragePerformed(JButton foodkind){
+             return food.getBevarageList();
      }
 }
