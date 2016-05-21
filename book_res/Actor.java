@@ -32,7 +32,8 @@ public class Actor {
 	}
 
 	public static void main(String[] args) {
-		actor.start();
+		//actor.start();
+            new Main().setVisible(true);
 	}
 
 	/*
