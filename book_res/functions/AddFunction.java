@@ -14,12 +14,12 @@ public class AddFunction {
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               addToTable(add, price, t);
+               addDataToTable(add, price, t);
             } 
         });
     } 
 
-    private void addToTable(JButton b, double price, JTable tblMenu) {
+    private void addDataToTable(JButton b, double price, JTable tblMenu) {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
         boolean found = false;
         for (int i = 0; i < model.getRowCount(); i++) {
