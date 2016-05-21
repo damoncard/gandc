@@ -1,8 +1,15 @@
 package book_res.interfaces;
 
-
+import book_res.functions.FoodFunction;
+import book_res.functions.FoodList;
 import book_res.functions.TableFuction;
 import book_res.functions.utils.DBReserve;
+import book_res.interfaces.layout.BeveragesMenuButtons;
+import book_res.interfaces.layout.FoodMenuButtons;
+import book_res.interfaces.layout.SnackMenuButtons;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Action;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class ReserveFace implements MainMenu{
+public class ReserveFace implements MainMenu {
 
     // Variable of reserve's part
     private static JButton btnDone;
@@ -25,21 +32,18 @@ public class ReserveFace implements MainMenu{
     public static JButton btnFoods, btnSnacks, btnBeverages;
     private static Table tblFoodMenu, tblBeverageMenu;
     public JTextField txtName;
-    private JButton[] foodTypeBtn;
-    public static JButton[] btnFoodType;
+//    private JButton[] foodTypeBtn;
+//    public static JButton[] btnFoodType;
     public static JPanel pnlMenuButton;
     DBReserve reserve = new DBReserve();
     TableFuction t;
     int idTable;
     String date;
     String time;
-    
-    
+    FoodList food;
+  //  FoodFunction foodFunction;
+
     public ReserveFace() {
-        t = new TableFuction();
-        idTable = t.getTableID();
-        date = t.getDate();
-        time = t.getTime();
         pnlTableMenu = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBeverageMenu = new Table("Bevarage");
@@ -73,17 +77,19 @@ public class ReserveFace implements MainMenu{
         jPanel7 = new javax.swing.JPanel();
         btnClear = new javax.swing.JButton();
         btnDone = new javax.swing.JButton();
-        btnFoodType = new JButton[]{btnSnacks, btnFoods, btnBeverages};
-        
+        food = new FoodList();
+//        btnFoodType = new JButton[]{btnSnacks, btnFoods, btnBeverages};
+//        tblMenu = new Table[]{tblFoodMenu, tblBeverageMenu};
+//        foodFunction = new FoodFunction();
     }
-
-    public JTable[] getTables() {
-        return new JTable[] {tblFoodMenu, tblBeverageMenu};
-    }
-    
-    public JButton[] getFoodTypeBtn() {
-        return btnFoodType;
-    }
+//
+//    public JTable[] getTables() {
+//        return new JTable[]{tblFoodMenu, tblBeverageMenu};
+//    }
+//
+//    public JButton[] getFoodTypeBtn() {
+//        return btnFoodType;
+//    }
 
     public void init() {
         pnlTableMenu.setBackground(new java.awt.Color(204, 204, 204));
@@ -177,7 +183,10 @@ public class ReserveFace implements MainMenu{
         btnCheck.setText("Check Tables");
         btnCheck.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                new TableFuction();
+                t = new TableFuction();
+                idTable = t.getTableID();
+                time = t.getTimE();
+                date = t.getDatE();
             }
         });
 
@@ -255,12 +264,36 @@ public class ReserveFace implements MainMenu{
 
         btnSnacks.setText("Snacks");
         btnSnacks.setPreferredSize(new java.awt.Dimension(90, 25));
+        btnSnacks.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(food.getSnackList());
+                new SnackMenuButtons(food.getSnackList(), tblFoodMenu);
+            }
+            
+        });
 
         btnFoods.setText("Foods");
         btnFoods.setPreferredSize(new java.awt.Dimension(90, 25));
+        btnFoods.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FoodMenuButtons(food.getFoodList(), tblFoodMenu);
+            }
+            
+        });
 
         btnBeverages.setText("Beverages");
         btnBeverages.setPreferredSize(new java.awt.Dimension(90, 25));
+        btnBeverages.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new BeveragesMenuButtons(food.getBevarageList(), tblBeverageMenu);
+            }
+        });
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -352,13 +385,13 @@ public class ReserveFace implements MainMenu{
                     System.out.println(tblFoodMenu.getRowCount());
                     javax.swing.JOptionPane.showMessageDialog(null, "Please select orders");
                 } else {
-                    reserve.insertReserving(idTable ,txtName.getText() ,date ,time);
+                    reserve.insertReserving(idTable, txtName.getText(), date, time);
                     int row = tblFoodMenu.getRowCount();
-                    for(int i = 0;i <= row; i++){
+                    for (int i = 0; i <= row; i++) {
                         reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(row, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(row, 2))));
                     }
                     int row2 = tblBeverageMenu.getRowCount();
-                    for(int i = 0;i <= row; i++){
+                    for (int i = 0; i <= row; i++) {
                         reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(row, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(row, 2))));
                     }
                     javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
@@ -420,8 +453,9 @@ public class ReserveFace implements MainMenu{
                                         .addComponent(jPanel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13))
         );
+//        foodFunction.setButtons(btnFoodType, tblMenu);
     }
-    
+
     private void deleteSelectedRow(javax.swing.JTable tbl, javax.swing.JLabel lbl, int row) {
         int res = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure you want to delete row " + (tbl.getSelectedRow() + 1) + " ?", "Please Confirm", javax.swing.JOptionPane.YES_NO_OPTION);
         switch (res) {
@@ -431,7 +465,6 @@ public class ReserveFace implements MainMenu{
 
                 //computePrice(lbl, removeComma(String.valueOf(model.getValueAt(row, 4))), "-");
                 //computePrice(lblTotalPrice, removeComma(String.valueOf(model.getValueAt(row, 4))), "-");
-
                 model.removeRow(row);
 
                 for (int i = row; i < model.getRowCount(); i++) {
@@ -447,9 +480,11 @@ public class ReserveFace implements MainMenu{
         }
 
     }
+
 }
 
 class Table extends JTable {
+
     public Table(String name) {
         setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -472,14 +507,14 @@ class Table extends JTable {
                 return canEdit[columnIndex];
             }
         });
-        
+
         getColumnModel().getColumn(0).setPreferredWidth(15);
         getColumnModel().getColumn(1).setPreferredWidth(210);
         getColumnModel().getColumn(2).setPreferredWidth(50);
         getColumnModel().getColumn(3).setPreferredWidth(15);
         getColumnModel().getColumn(4).setPreferredWidth(60);
         ((DefaultTableCellRenderer) getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
+
         DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
         leftRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
         for (int i = 0; i <= 4; i++) {

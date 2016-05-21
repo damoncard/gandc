@@ -13,16 +13,17 @@ import book_res.functions.utils.DBCheckTable;
 import java.awt.Color;
 import java.util.ArrayList;
 import book_res.interfaces.ReserveFace;
+import static book_res.interfaces.ReserveFace.lblReserve;
+import static book_res.interfaces.ReserveFace.lblTableNo;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 
 /**
  *
  * @author Default141
  */
-public class TableFuction extends ReserveFace {
+public class TableFuction extends TableFace {
 
     DBCheckTable checkTable;
     TableFace tableface;
@@ -37,19 +38,20 @@ public class TableFuction extends ReserveFace {
         checkTable = new DBCheckTable();
         tableface = new TableFace();
         tableface.setVisible(true);
-
         chairButtons = tableface.getChairButtons();
         checkTable();
         checkSeat();
     }
-    
+
     public int getTableID() {
         return tableId;
     }
-    public String getTime() {
+
+    public String getTimE() {
         return time;
     }
-    public String getDate() {
+
+    public String getDatE() {
         return date;
     }
 
@@ -61,11 +63,11 @@ public class TableFuction extends ReserveFace {
                 lblReserve.setText(date + " " + time);
                 //ReserveFace.init();
                 tableface.dispose();
-            } 
+            }
         });
     }
 
-    private void checkSeat() {  
+    private void checkSeat() {
         chairButtons.get(0).addActionListener(new ChairButtonAction(Integer.parseInt(String.valueOf(chairButtons.get(0).getText()))));
         chairButtons.get(1).addActionListener(new ChairButtonAction(Integer.parseInt(String.valueOf(chairButtons.get(1).getText()))));
         chairButtons.get(2).addActionListener(new ChairButtonAction(Integer.parseInt(String.valueOf(chairButtons.get(2).getText()))));

@@ -20,9 +20,11 @@ public class FoodFunction {
  
     public void setButtons(JButton b[], JTable[] t) {
         food = new FoodList();
-            setSnackButton(b[0], t[0]);
-            setFoodButton(b[1], t[0]);
-            setBeverageButton(b[2], t[1]);
+        System.out.println(b[0]);
+        System.out.println(t[0]);
+//            setSnackButton(b[0], t[0]);
+//            setFoodButton(b[1], t[0]);
+//            setBeverageButton(b[2], t[1]);
 
 
     }

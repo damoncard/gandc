@@ -28,7 +28,7 @@ public class LogIn {
                 log.connect();
                 checkLogIn(x);
                 x.dispose();
-                log.disconnect();
+                //log.disconnect();
             }
         });
 
