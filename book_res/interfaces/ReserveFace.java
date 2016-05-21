@@ -30,8 +30,8 @@ public class ReserveFace implements MainMenu{
     public ReserveFace() {
         pnlTableMenu = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblBeverageMenu = new Table("Foods");
-        tblFoodMenu = new Table("Bevarages");
+        tblBeverageMenu = new Table("Bevarage")
+        tblFoodMenu = new Table("Food");
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
