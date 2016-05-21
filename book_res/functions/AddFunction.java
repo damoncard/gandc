@@ -18,7 +18,7 @@ public class AddFunction {
         });
     } 
 
-    private void addToTable(JButton b, int price, JTable tblMenu) {
+    private void addToTable(JButton b, double price, JTable tblMenu) {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
         boolean found = false;
         for (int i = 0; i < model.getRowCount(); i++) {
@@ -33,7 +33,7 @@ public class AddFunction {
         if (!found) {
             model.addRow(new Object[0]);
             tblMenu.setValueAt(model.getRowCount(), model.getRowCount() - 1, 0);
-            tblMenu.setValueAt(btn.getText(), model.getRowCount() - 1, 1);
+            tblMenu.setValueAt(b.getText(), model.getRowCount() - 1, 1);
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 2);
             tblMenu.setValueAt(1, model.getRowCount() - 1, 3);
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 4);
