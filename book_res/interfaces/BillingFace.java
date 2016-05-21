@@ -509,8 +509,8 @@ public class BillingFace implements MainMenu {
 
         javax.swing.table.DefaultTableCellRenderer renderer = new javax.swing.table.DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
-        for (int i = 0; i <= 3; i++) {
-            if (i > 0 && i < 3) {
+        for (int Horizontal = 0; Horizontal <= 3; Horizontal++) {
+            if (Horizontal > 0 && Horizontal < 3) {
                 tblBilling.getColumnModel().getColumn(i).setCellRenderer(renderer);
             }
             tblgetTables.getColumnModel().getColumn(i).setCellRenderer(renderer);
@@ -596,7 +596,7 @@ public class BillingFace implements MainMenu {
     }
 
     private void deleteAllRow(javax.swing.table.DefaultTableModel model) {
-        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+        for (int row = model.getRowCount() - 1; row >= 0; row--) {
             model.removeRow(i);
         }
     }
