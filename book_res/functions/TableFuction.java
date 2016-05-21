@@ -14,26 +14,28 @@ import java.awt.Color;
 import java.util.ArrayList;
 import jdk.nashorn.internal.codegen.CompilerConstants;
 
-
 /**
  *
  * @author Default141
  */
 public class TableFuction {
 
-    static DBCheckTable checkTable;
-    static TableFace tableface;
-    static String time;
-    static String date;
-    static int tableId;
-    static String message1 = "Avalible Table Number: ";
-    static String message2 = "Not Avalible";
-    static ArrayList<JButton> chairButtons;
+    DBCheckTable checkTable;
+    TableFace tableface;
+    String time;
+    String date;
+    int tableId;
+    String message1 = "Avalible Table Number: ";
+    String message2 = "Not Avalible";
+    ArrayList<JButton> chairButtons;
 
     public TableFuction() {
         checkTable = new DBCheckTable();
         tableface = new TableFace();
+        tableface.setVisible(true);
+        
         chairButtons = tableface.getChairButtons();
+        System.out.println(chairButtons);
         checkTable();
         checkSeat();
     }
@@ -56,39 +58,38 @@ public class TableFuction {
         chairButtons.get(3).addActionListener(new ChairButtonAction(Integer.parseInt(String.valueOf(chairButtons.get(3).getText()))));
     }
 
-    private void checkPerformed(int seats) {
-        tableId = checkTable.checkAvailable(String.valueOf(tableface.getDate().getValue()), String.valueOf(tableface.getTime().getValue()), seats);
-        if (tableId != -1) {
-            tableface.getMessage().setText(message1 + tableId);
-            tableface.getMessage().setForeground(new Color(0, 204, 0));
-        } else {
-            tableface.getMessage().setText(message2);
-            tableface.getMessage().setForeground(new Color(255, 0, 0));
-            //this.tableId = tableId;
-        }
-    }
-    
-    class ChairButtonAction implements ActionListener {
-        int seats;
-        
-        public ChairButtonAction(int seats) {
-            this.seats = seats;
-        }
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            checkPerformed(seats);
-        }
-    }
-
-    private static void reserveTablePerformed(ActionEvent e) {
+    private void reserveTablePerformed(ActionEvent e) {
         System.out.println("Finish");
         tableface.dispose();
     }
+
     public static void main(String[] args) {
         //System.out.println(chairButtons.get(0));
         TableFuction t = new TableFuction();
     }
-
     
+    class ChairButtonAction implements ActionListener {
+
+        int seats;
+
+        public ChairButtonAction(int seats) {
+            this.seats = seats;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            checkTable.connect();
+            tableId = checkTable.checkAvailable(String.valueOf(tableface.getDate().getValue()), String.valueOf(tableface.getTime().getValue()), seats);
+            if (tableId != -1) {
+                tableface.getMessage().setText(message1 + tableId);
+                tableface.getMessage().setForeground(new Color(0, 204, 0));
+            } else {
+                tableface.getMessage().setText(message2);
+                tableface.getMessage().setForeground(new Color(255, 0, 0));
+                //this.tableId = tableId;
+            }
+            checkTable.disconnect();
+        }
+    }
+
 }

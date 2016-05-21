@@ -1,5 +1,6 @@
 package book_res.interfaces;
 
+import book_res.functions.TableFuction;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -163,7 +164,7 @@ public class ReserveFace implements MainMenu{
         btnCheck.setText("Check Tables");
         btnCheck.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                new TableFace().setVisible(true);
+                new TableFuction();
             }
         });
 
