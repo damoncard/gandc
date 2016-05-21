@@ -36,9 +36,7 @@ public class ReserveFace implements MainMenu{
     private Table tblFoodMenu, tblBeverageMenu;
     private JTextField txtName;
     
-    
-
-    public void init() {
+    public ReserveFace() {
         pnlTableMenu = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBeverageMenu = new Table("Foods");
@@ -72,6 +70,15 @@ public class ReserveFace implements MainMenu{
         jPanel7 = new javax.swing.JPanel();
         btnClear = new javax.swing.JButton();
         btnDone = new javax.swing.JButton();
+    }
+    
+    public JButton[] getMenuButtons() {
+        return new JButton[]{btnFoods, btnSnacks, btnBeverages};
+    }
+    
+
+    public void init() {
+        
 
         pnlTableMenu.setBackground(new java.awt.Color(204, 204, 204));
         pnlTableMenu.setPreferredSize(new java.awt.Dimension(415, 460));
