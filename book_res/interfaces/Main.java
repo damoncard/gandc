@@ -29,7 +29,6 @@ public class Main extends SimpleFace {
 
     private JButton backlogButton;
     private JButton billingButton;
-    private JButton popularButton;
     private JButton reserveButton;
     private JLabel jLabel1;
     private JPanel jPanel3;
@@ -53,7 +52,6 @@ public class Main extends SimpleFace {
         reserveButton = new JButton();
         billingButton = new JButton();
         backlogButton = new JButton();
-        popularButton = new JButton();
         contentPane = new JPanel();
         jPanel3 = new JPanel();
         jLabel1 = new JLabel();
@@ -104,15 +102,6 @@ public class Main extends SimpleFace {
             }
         });
 
-        popularButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        popularButton.setText("POPULAR FOOD");
-        popularButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        popularButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                popularButtonMouseClicked(evt);
-            }
-        });
-
         GroupLayout menuTabLayout = new GroupLayout(menuTab);
         menuTab.setLayout(menuTabLayout);
         menuTabLayout.setHorizontalGroup(
@@ -124,8 +113,6 @@ public class Main extends SimpleFace {
                         .addComponent(billingButton, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(backlogButton, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(popularButton)
                         .addContainerGap(342, Short.MAX_VALUE))
         );
         menuTabLayout.setVerticalGroup(
@@ -135,7 +122,6 @@ public class Main extends SimpleFace {
                         .addGroup(menuTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(reserveButton, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                                 .addComponent(billingButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(popularButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(backlogButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 

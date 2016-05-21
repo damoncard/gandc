@@ -1,6 +1,9 @@
 package book_res.interfaces;
 
 import book_res.functions.Comma;
+import book_res.functions.utils.DBBacklog;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,29 +15,33 @@ import javax.swing.table.DefaultTableModel;
 public class BacklogFace implements MainMenu {
 
     // Variable of backlog's part
-    private JButton btnADay, btnAMonth, btnCheckBacklog;
+    private JButton btnADay, btnAMonth, btnCheckBacklog, btnPopularFood;
     private JPanel jPanel17, jPanel18, jPanel19;
     private JScrollPane jScrollPane6;
     private JSpinner spnBacklog;
     private JTable tblBacklog;
     private boolean clickedADay, clickedAMonth;
+    private DBBacklog backlog;
+    private final String[] MONTHS = {"January", "Fabuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     public void init() {
         jPanel17 = new javax.swing.JPanel();
         btnADay = new javax.swing.JButton();
         btnAMonth = new javax.swing.JButton();
+        btnPopularFood = new JButton();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblBacklog = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         spnBacklog = new javax.swing.JSpinner(new javax.swing.SpinnerDateModel());
         btnCheckBacklog = new javax.swing.JButton();
+        backlog = new DBBacklog();
 
         jPanel17.setBackground(new java.awt.Color(204, 204, 204));
 
         ((javax.swing.JSpinner.DefaultEditor) spnBacklog.getEditor()).getTextField().setText("");
 
-        btnADay.setText("A DAY");
+        btnADay.setText("REVENUE A DAY");
         btnADay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 javax.swing.JSpinner.DateEditor dateEditor = new javax.swing.JSpinner.DateEditor(spnBacklog, "MMMMM yyyy");
@@ -45,14 +52,21 @@ public class BacklogFace implements MainMenu {
             }
         });
 
-        btnAMonth.setText("A MONTH");
-        btnAMonth.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
+        btnAMonth.setText("REVENUE A MONTH");
+        btnAMonth.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
                 javax.swing.JSpinner.DateEditor dateEditor = new javax.swing.JSpinner.DateEditor(spnBacklog, "yyyy");
                 spnBacklog.setEditor(dateEditor);
                 ((javax.swing.JSpinner.DefaultEditor) spnBacklog.getEditor()).getTextField().setHorizontalAlignment(javax.swing.JTextField.RIGHT);
                 clickedAMonth = true;
                 clickedADay = false;
+            }
+        });
+
+        btnPopularFood.setText("POPULAR FOODS");
+        btnPopularFood.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                
             }
         });
 
@@ -64,7 +78,8 @@ public class BacklogFace implements MainMenu {
                         .addContainerGap()
                         .addGroup(jPanel17Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(btnADay, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                .addComponent(btnAMonth, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+                                .addComponent(btnAMonth, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(btnPopularFood, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                         .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -74,6 +89,8 @@ public class BacklogFace implements MainMenu {
                         .addComponent(btnADay, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAMonth, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPopularFood, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -134,33 +151,35 @@ public class BacklogFace implements MainMenu {
         btnCheckBacklog.setText("check");
         btnCheckBacklog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
+                backlog.connect();
                 deleteAllRow((javax.swing.table.DefaultTableModel) tblBacklog.getModel());
                 java.util.ArrayList<java.util.HashMap> logs = null;
                 if (clickedADay) {
                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM");
                     java.util.Calendar date = new java.util.GregorianCalendar();
                     date.setTime((java.util.Date) spnBacklog.getValue());
-                    date.add(java.util.Calendar.YEAR, -543);
 
-                   // logs = queue.getBacklogADay(dateFormat.format(date.getTime()));
+                    logs = backlog.getBacklogADay(dateFormat.format(date.getTime()));
                 }
                 if (clickedAMonth) {
                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy");
                     java.util.Calendar date = new java.util.GregorianCalendar();
                     date.setTime((java.util.Date) spnBacklog.getValue());
-                    date.add(java.util.Calendar.YEAR, -543);
 
-                   // logs = queue.getBacklogAMonth(dateFormat.format(date.getTime()));
+                    logs = backlog.getBacklogAMonth(dateFormat.format(date.getTime()));
                 }
+
                 if (logs != null) {
+                    int total = 0;
                     int line = 0;
                     for (java.util.HashMap log : logs) {
-                        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblBacklog.getModel();
+                        DefaultTableModel model = (DefaultTableModel) tblBacklog.getModel();
                         model.addRow(new Object[0]);
-                        model.setValueAt(log.get("date"), line, 0);
+                        model.setValueAt((clickedAMonth ? MONTHS[Integer.parseInt(String.valueOf(log.get("date"))) - 1] : log.get("date")), line, 0);
                         model.setValueAt(log.get("noOfCustomer"), line, 1);
                         model.setValueAt(Comma.putComma(String.valueOf(log.get("revenue"))), line, 2);
-                        model.setValueAt(Comma.putComma(String.valueOf(log.get("total"))), line, 3);
+                        total += Integer.parseInt(String.valueOf(log.get("revenue")));
+                        model.setValueAt(Comma.putComma(total + ""), line, 3);
                         line++;
                     }
                 }
@@ -209,7 +228,7 @@ public class BacklogFace implements MainMenu {
                         .addContainerGap())
         );
     }
-    
+
     private void deleteAllRow(DefaultTableModel model) {
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);

@@ -50,17 +50,18 @@ public class DBReserve extends ConnectDB{
         return Integer.parseInt(String.valueOf(foodName.get("foodID")));
     }
     
-    public void addOrders(int foodID, int qty) {
+    public void addOrders(String date, int foodID, int qty) {
         String sql = "INSERT INTO OOSD_ORDERS(reserveID, foodID, quantity) VALUES ( "
                 + getLastestOrderID() + ", "
                 + foodID + ", "
                 + qty + " )";
         db.executeQuery(sql);
-        updateOrderedFood(foodID, qty);
+        updateOrderedFood(date, foodID, qty);
     }
     
-    private void updateOrderedFood(int foodId, int quantity) {
-        String sql = "UPDATE OOSD_FOODS SET ordered = ordered + " + quantity + " WHERE foodID = " + foodId;
+    private void updateOrderedFood(String date, int foodId, int quantity) {
+        String sql = "UPDATE OOSD_FOODBACKLOG SET ordered = ordered + " + quantity + ""
+                + " WHERE foodID = " + foodId + " AND date = '" + date + "'";
         db.executeQuery(sql);
     }
 

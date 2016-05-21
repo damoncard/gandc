@@ -43,6 +43,7 @@ public class Actor {
 //			System.out.println(reserveface.getMenuButtons()[2].getText());
 			//System.out.println(reserveface.getFoodTypeBtn()[0].getText());
 			m.setVisible(true);
+                        m.setLocationRelativeTo(null);
 	}
 
 	/*
