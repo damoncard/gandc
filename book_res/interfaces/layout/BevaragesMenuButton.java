@@ -119,34 +119,5 @@ class BeveragesMenuButtons extends MenuTemplate {
 			label.setText(putComma(totalPrice));
 		}
 	}
-
-	protected int removeComma(String s) {
-		int num = 0;
-		try {
-			NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
-			Number number = format.parse(s);
-			num = number.intValue();
-		} catch (ParseException e) {
-		}
-		return num;
-	}
-
-	protected String putComma(double num) {
-		String s = String.valueOf(num);
-		String res = "";
-		if (s.length() <= 5) {
-			return s + "0.-";
-		} else {
-			int cnt = 0;
-			for (int i = s.length() - 3; i >= 0; i--) {
-				cnt++;
-				res = s.charAt(i) + res;
-				if (cnt == 3 && i > 0) {
-					res = "," + res;
-					cnt = 0;
-				}
-			}
-			return res + ".00.-";
-		}
-	}*/
+	*/
 }
