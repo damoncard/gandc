@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import book_res.functions.utils.DBCheckTable;
+import book_res.interfaces.CollectMainMenu;
+import book_res.interfaces.Main;
 import java.awt.Color;
 import java.util.ArrayList;
 import book_res.interfaces.ReserveFace;
@@ -54,6 +56,7 @@ public class TableFuction extends ReserveFace {
             public void actionPerformed(ActionEvent e) {
                 lblTableNo.setText(tableId + "");
                 lblReserve.setText(date + " " + time);
+                //ReserveFace.init();
                 tableface.dispose();
             } 
         });
@@ -66,10 +69,6 @@ public class TableFuction extends ReserveFace {
         chairButtons.get(3).addActionListener(new ChairButtonAction(Integer.parseInt(String.valueOf(chairButtons.get(3).getText()))));
     }
 
-    public static void main(String[] args) {
-        //System.out.println(date);
-        TableFuction t = new TableFuction();
-    }
     private static Calendar dateTimeReserve;
 
     class ChairButtonAction implements ActionListener {

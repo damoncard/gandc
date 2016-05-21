@@ -2,7 +2,6 @@ package book_res.interfaces;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 

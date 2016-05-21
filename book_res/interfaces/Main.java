@@ -45,6 +45,10 @@ public class Main extends SimpleFace {
         menu.getReserve();
         setTime();
     }
+    
+    public void re(){
+        menu.getReserve();
+    }
 
     @Override
     protected void addComponents() {
@@ -59,6 +63,8 @@ public class Main extends SimpleFace {
         lblClock = new JLabel();
         lblUser = new JLabel();
         menu = new CollectMainMenu();
+        
+
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
@@ -79,6 +85,7 @@ public class Main extends SimpleFace {
                 menu.getReserve();
             }
         });
+        
 
         billingButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         billingButton.setText("BILLING");
