@@ -16,7 +16,6 @@ public class FoodMenuButtons extends MenuTemplate {
         for (HashMap<String, String> b : buttons) {
             createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")));
         }
-        System.out.println(allMenus);
         setPanel();
     }
 

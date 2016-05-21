@@ -1,9 +1,6 @@
 package book_res.interfaces;
 
 import book_res.functions.Comma;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -245,128 +242,7 @@ public class BillingFace implements MainMenu {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
         );
-        /*
-         btn7.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn7.setText("7");
-         btn7.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn7.getText()))));
-         }
-
-         }
-         });
-
-         btn8.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn8.setText("8");
-         btn8.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn8.getText()))));
-         }
-         }
-         });
-
-         btn9.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn9.setText("9");
-         btn9.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn9.getText()))));
-         }
-         }
-         });
-
-         btn4.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn4.setText("4");
-         btn4.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn4.getText()))));
-         }
-         }
-         });
-
-         btn5.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn5.setText("5");
-         btn5.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn5.getText()))));
-         }
-         }
-         });
-
-         btn1.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn1.setText("1");
-         btn1.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn1.getText()))));
-         }
-         }
-         });
-
-         btn6.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn6.setText("6");
-         btn6.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn6.getText()))));
-         }
-         }
-         });
-
-         btn2.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn2.setText("2");
-         btn2.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn2.getText()))));
-         }
-         }
-         });
-
-         btn3.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn3.setText("3");
-         btn3.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn3.getText()))));
-         }
-         }
-         });
-
-         btn0.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn0.setText("0");
-         btn0.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn0.getText()))));
-         }
-         }
-         });
-
-         btn00.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn00.setText("00");
-         btn00.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn00.getText()))));
-         }
-         }
-         });
-
-         btn000.setFont(new java.awt.Font("Tahoma", 0, 24));
-         btn000.setText("000");
-         btn000.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mouseClicked(java.awt.event.MouseEvent evt) {
-         if (!clickedEnter) {
-         lblCash.setText(putComma(Double.parseDouble((removeComma(lblCash.getText()) + btn000.getText()))));
-         }
-         }
-         });
-         */
+        
         btnCE.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCE.setText("CE");
         btnCE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -382,13 +258,13 @@ public class BillingFace implements MainMenu {
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (!clickedEnter) {
-//                    String text = String.valueOf(removeComma(lblCash.getText()));
-//                    if (text.length() <= 1) {
-//                        lblCash.setText("");
-//                    } else {
-//                        text = text.substring(0, text.length() - 1);
-//                        lblCash.setText(putComma(Double.parseDouble(text)));
-//                    }
+                    String text = String.valueOf(Comma.removeComma(lblCash.getText()));
+                    if (text.length() <= 1) {
+                        lblCash.setText("");
+                    } else {
+                        text = text.substring(0, text.length() - 1);
+                        lblCash.setText(Comma.putComma(text));
+                    }
                 }
             }
         });
@@ -397,16 +273,16 @@ public class BillingFace implements MainMenu {
         btnEnter.setText("<html><center>Enter</center></html>");
         btnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                lblChange.setText("");
-//
-//                double change = removeComma(lblCash.getText()) - removeComma(lblTotal.getText());
-//                if (lblCash.getText().equals("") || lblTotal.getText().equals("")) {
-//                } else if (change < 0.0) {
-//                    javax.swing.JOptionPane.showMessageDialog(null, "Not Enough");
-//                } else {
-//                    lblChange.setText(putComma(change));
-//                    clickedEnter = true;
-//                }
+                lblChange.setText("");
+
+                double change = Double.parseDouble(Comma.removeComma(lblCash.getText())) - Double.parseDouble(Comma.removeComma(lblTotal.getText()));
+                if (lblCash.getText().equals("") || lblTotal.getText().equals("")) {
+                } else if (change < 0.0) {
+                    javax.swing.JOptionPane.showMessageDialog(null, "Not Enough");
+                } else {
+                    lblChange.setText(Comma.putComma(change + ""));
+                    clickedEnter = true;
+                }
             }
         });
 
