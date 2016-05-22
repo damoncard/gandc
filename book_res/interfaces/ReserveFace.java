@@ -24,7 +24,7 @@ public class ReserveFace implements MainMenu {
 
     // Variable of reserve's part
     private static JButton btnDone;
-    private JButton btnCheck, btnClear;
+    private JButton btnCheck;
     public JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel8,
             lblDate, lblTime, lblTotalFoodPrice, lblTotalBeveragePrice, lblTotalPrice;
     private JPanel jPanel1, jPanel2, jPanel4, jPanel5, jPanel6, jPanel7, pnlTableMenu;
@@ -76,7 +76,7 @@ public class ReserveFace implements MainMenu {
         jLabel8 = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        btnClear = new javax.swing.JButton();
+     
         btnDone = new javax.swing.JButton();
         food = new FoodList();
 //        btnFoodType = new JButton[]{btnSnacks, btnFoods, btnBeverages};
@@ -360,14 +360,6 @@ public class ReserveFace implements MainMenu {
                 .addComponent(lblTotalPrice)
         );
 
-        btnClear.setBackground(new java.awt.Color(255, 0, 0));
-        btnClear.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnClear.setText("CLEAR");
-        btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //resetToDefault();
-            }
-        });
 
         btnDone.setBackground(new java.awt.Color(51, 204, 0));
         btnDone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -398,8 +390,8 @@ public class ReserveFace implements MainMenu {
                     } finally {
                         javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
                     }
-                    deleteAllRow((DefaultTableModel)tblBeverageMenu.getModel());
-                    deleteAllRow((DefaultTableModel)tblFoodMenu.getModel());
+                    deleteAllRow((DefaultTableModel) tblBeverageMenu.getModel());
+                    deleteAllRow((DefaultTableModel) tblFoodMenu.getModel());
                     lblReserve.setText("");
                     lblTableNo.setText("");
                     txtName.setText("");
@@ -415,13 +407,13 @@ public class ReserveFace implements MainMenu {
                         .addContainerGap(58, Short.MAX_VALUE)
                         .addComponent(btnDone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(btnClear)
+            
                         .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
                 jPanel7Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addComponent(btnDone, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
         );
 
         GroupLayout contentPaneLayout = new GroupLayout(Main.contentPane);
@@ -463,7 +455,7 @@ public class ReserveFace implements MainMenu {
         );
 //        foodFunction.setButtons(btnFoodType, tblMenu);
     }
-    
+
     private void deleteAllRow(DefaultTableModel model) {
         for (int row = model.getRowCount() - 1; row >= 0; row--) {
             model.removeRow(row);

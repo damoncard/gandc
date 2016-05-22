@@ -27,7 +27,7 @@ public class DBBacklog extends ConnectDB{
         String sql = "SELECT MONTH(date) AS date, SUM(noOfCustomer) as noOfCustomer, SUM(revenue) as revenue, foodName"
                 + " FROM OOSD_BACKLOG, OOSD_FOODS"
                 + " WHERE YEAR(date) = '" + year + "'"
-                + " AND (date, foodID) IN (SELECT date, foodID FROM OOSD_FOODBACKLOG AS A WHERE A.qty >= ALL(SELECT qty FROM OOSD_FOODBACKLOG AS B WHERE A.date = B.date))"
+                + " AND (date) IN (SELECT date FROM OOSD_FOODBACKLOG AS A WHERE A.qty >= ALL(SELECT qty FROM OOSD_FOODBACKLOG AS B WHERE A.date = B.date))"
                 + " GROUP BY MONTH(date)";
         return db.queryRows(sql);
     }
