@@ -17,18 +17,21 @@ import javax.swing.JTable;
 public class FoodFunction {
 
     FoodList food;
- 
+    
+    /**
+    * set the button for each table.
+    */
     public void setButtons(JButton b[], JTable[] t) {
         food = new FoodList();
-        System.out.println(b[0]);
-        System.out.println(t[0]);
-//            setSnackButton(b[0], t[0]);
-//            setFoodButton(b[1], t[0]);
-//            setBeverageButton(b[2], t[1]);
+            setSnackButton(b[0], t[0]);
+            setFoodButton(b[1], t[0]);
+            setBeverageButton(b[2], t[1]);
 
 
     }
-
+    /**
+    *set food button.
+    */
     private void setFoodButton(JButton b, JTable t) {
         b.addActionListener(new ActionListener() {
             @Override
@@ -37,7 +40,9 @@ public class FoodFunction {
             }
         });
     }
-    
+    /**
+    * set button for snack food.
+    */
     private void setSnackButton(JButton b, JTable t) {
         b.addActionListener(new ActionListener() {
             @Override
@@ -46,7 +51,9 @@ public class FoodFunction {
             }
         });
     }
-    
+    /**
+    *set button for beverage food.
+    */
     private void setBeverageButton(JButton b, JTable t) {
         b.addActionListener(new ActionListener() {
             @Override

@@ -18,7 +18,13 @@ public class AddFunction {
             } 
         });
     } 
-
+    /**
+    * Add element to the table
+    * <p>
+    * @param b  jbutton that use in table
+    * @param price of element in table 
+    * @param tbl Menu 
+    */
     private void addDataToTable(JButton b, double price, JTable tblMenu) {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
         boolean found = false;
@@ -40,6 +46,15 @@ public class AddFunction {
             tblMenu.setValueAt(price + "0.-", model.getRowCount() - 1, 4);
         }
     }
+
+    /**
+    * Compute the price from the data of element.
+    * <p>
+    * @param label Jlabel that use to show the price.
+    * @param price price from element.
+    * @param sign  math operator - or +
+    * @see price with comma
+    */
     protected void computePrice(JLabel label, double price, String sign) {
         double totalPrice = 0;
 

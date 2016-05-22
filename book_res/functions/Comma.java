@@ -5,6 +5,13 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
+
+/**
+* Cut out comma from number
+*<p>
+*@param s  symbor or comma sign that want to cut out.
+*@return number  string of number that cut comma out.
+*/
 public class Comma {
     public static String removeComma(String s) {
         if (!s.equals("")) {
@@ -19,6 +26,12 @@ public class Comma {
         } return "";
     }
 
+    /**
+    * add comma sign to number and .00- after number.
+    *<p>
+    *@param s number that input as string.
+    *@return number with comma in string format.
+    */
     public static String putComma(String s) {
         String res = "";
         if (s.length() <= 3) {

@@ -25,19 +25,23 @@ public class FoodList {
         foodlist = new DBFood();
         foodlist.connect();
     }
-    
+    // return all of the food ID.
     public ArrayList<HashMap<String, String>> getFoodList() {
         return list(foodlist.getAllFoodIDs());
     }
-    
+    // return all of the bevarageID.
     public ArrayList<HashMap<String, String>> getBevarageList() {
         return list(foodlist.getAllBevaragesIDs());
     } 
-    
+    // return all of snackID.
     public ArrayList<HashMap<String, String>> getSnackList() {
         return list(foodlist.getAllSnackIDs());
     }
-    
+    /**
+    * return the food list from the list of food name and id.
+    * <p>
+    * @param ListIDs list of all food id.
+    */
     private ArrayList<HashMap<String, String>> list(ArrayList<HashMap> listIDs){
         
         ArrayList<HashMap<String, String>> foodList = new ArrayList<>();

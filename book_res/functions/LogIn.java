@@ -14,12 +14,15 @@ public class LogIn {
     private static String[] inUser;
     private Actor main = new Actor();
 
+    /**
+    * Authentication the login system.
+    *@param z form information.
+    *@return true of false.
+    */
     public boolean checkLogIn(LogFace z) {
         inUser = z.getForm();
         if (log.checkUser(inUser[0], inUser[1])) {
-            Main main = new Main();
-            main.setVisible(true);
-            main.setLocationRelativeTo(null);
+            new Main().setVisible(true);
         }
         return false;
     }
@@ -30,7 +33,7 @@ public class LogIn {
                 log.connect();
                 checkLogIn(x);
                 x.dispose();
-                //log.disconnect();
+                log.disconnect();
             }
         });
 
