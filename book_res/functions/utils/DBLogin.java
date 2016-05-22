@@ -9,6 +9,7 @@ public class DBLogin extends ConnectDB{
     }
     
     public boolean checkUser(String id, String pass) {
+        connect();
         String sql = "SELECT * FROM R_ID WHERE Id = '" + id + "'";
         HashMap user = db.queryRow(sql);
         if (!user.isEmpty()) {
@@ -16,8 +17,7 @@ public class DBLogin extends ConnectDB{
                 return true;
             }
         }
+        disconnect();
         return false;
-
     }
-
 }

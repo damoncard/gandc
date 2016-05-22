@@ -10,7 +10,6 @@ import book_res.Actor;
 public class LogIn {
 
     private static DBLogin log = new DBLogin();
-    //private static ConnectDB con = new ConnectDB();
     private static String[] inUser;
     private Actor main = new Actor();
 
@@ -30,10 +29,8 @@ public class LogIn {
     public void setSignInButton(LogFace x) {
         x.getButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                log.connect();
                 checkLogIn(x);
                 x.dispose();
-                log.disconnect();
             }
         });
 

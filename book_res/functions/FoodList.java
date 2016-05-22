@@ -23,7 +23,6 @@ public class FoodList {
     */
     public FoodList() {
         foodlist = new DBFood();
-        foodlist.connect();
     }
     // return all of the food ID.
     public ArrayList<HashMap<String, String>> getFoodList() {

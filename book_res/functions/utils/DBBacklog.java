@@ -13,6 +13,7 @@ public class DBBacklog extends ConnectDB{
     }
     
     public ArrayList<HashMap> getBacklogADay(String date) {
+        connect();
         String year = date.substring(0, 4);
         String month = date.substring(5, 7);
         if(month.charAt(0) == '0') month = String.valueOf(month.charAt(1));
@@ -23,17 +24,21 @@ public class DBBacklog extends ConnectDB{
                 + " SELECT date FROM OOSD_FOODBACKLOG AS a"
                 + " HAVING qty > ALL(SELECT qty FROM OOSD_FOODBACKLOG AS b WHERE a.date = b.date and a.foodID <> b.foodID) )";
         System.out.println(sql);
-        return db.queryRows(sql);
-        
+        ArrayList<HashMap> queries = db.queryRows(sql);
+        disconnect();
+        return queries;
     }
     
     public ArrayList<HashMap> getBacklogAMonth(String year) {
+        connect();
         String sql = "SELECT MONTH(date) AS date, SUM(noOfCustomer) as noOfCustomer, SUM(revenue) as revenue, foodName"
                 + " FROM OOSD_BACKLOG, OOSD_FOODS"
                 + " WHERE YEAR(date) = '" + year + "'"
                 + " AND (date, foodID) IN (SELECT date, foodID FROM OOSD_FOODBACKLOG AS A WHERE A.qty >= ALL(SELECT qty FROM OOSD_FOODBACKLOG AS B WHERE A.date = B.date))"
                 + " GROUP BY MONTH(date)";
-        return db.queryRows(sql);
+        ArrayList<HashMap> queries = db.queryRows(sql);
+        disconnect();
+        return queries;
     }
     
     

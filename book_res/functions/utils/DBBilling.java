@@ -16,30 +16,39 @@ public class DBBilling extends ConnectDB {
      * @return
      */
     public ArrayList<HashMap> getReserve(String date) {
+        connect();
         String sql = "SELECT reserveID, tableID, customerName, timeReserve, timeReserve + interval 2 hour AS timeout "
                 + " FROM OOSD_RESERVES AS R JOIN OOSD_CUSTOMERS AS C ON R.customerID = C.customerID"
                 + " WHERE dateReserve = '" + date + "'"
                 + " ORDER BY timeReserve";
-        return db.queryRows(sql);
+        ArrayList<HashMap> queries = db.queryRows(sql);
+        disconnect();
+        return queries;
     }
 
     public ArrayList<HashMap> getBilling(int reserveID) {
+        connect();
         String sql = "SELECT foodName, quantity, (price*quantity) AS total"
                 + " FROM OOSD_RESERVES AS R, OOSD_ORDERS AS O, OOSD_FOODS AS F"
                 + " WHERE R.reserveID = " + reserveID
                 + " AND R.reserveID = O.reserveID and O.foodID = F.foodID";
-        return db.queryRows(sql);
+        ArrayList<HashMap> queries = db.queryRows(sql);
+        disconnect();
+        return queries;
     }
 
     public void removeOrder(int reserveID) {
+        connect();
         String sql = "DELETE FROM OOSD_ORDERS WHERE reserveID = " + reserveID;
         db.executeQuery(sql);
         
         sql = "DELETE FROM OOSD_RESERVES WHERE reserveID = " + reserveID;
         db.executeQuery(sql);
+        disconnect();
     }
 
     public void updateBacklog(String date, int revenue, int tableID) {
+        connect();
         String sql = "SELECT chairs FROM OOSD_TABLES WHERE tableID = " + tableID;
         int chairs = Integer.parseInt(String.valueOf(db.queryRow(sql).get("chairs")));
 
@@ -58,6 +67,7 @@ public class DBBilling extends ConnectDB {
             sql = "UPDATE OOSD_BACKLOG SET revenue = " + revenue + ", noOfCustomer = " + chairs + " WHERE date = '" + date + "'";
             db.executeQuery(sql);
         }
+        disconnect();
     }
 
 }

@@ -16,6 +16,7 @@ public class DBReserve extends ConnectDB{
      * @param timeReserve in format of "HH:MM"
      */
     public void insertReserving(int tableId, String customerName, String dateReserve, String timeReserve) {
+        connect();
         insertCustomer(customerName);
         
         String sql = "INSERT INTO OOSD_RESERVES(dateReserve, timeReserve, tableID, customerID) VALUES ( '"
@@ -24,7 +25,8 @@ public class DBReserve extends ConnectDB{
                 + tableId + ", "
                 + getLastestCustomerID()
                 + " )";
-        System.out.println(db.executeQuery(sql));
+        db.executeQuery(sql);
+        disconnect();
     }
     
     private void insertCustomer(String name) {
@@ -51,6 +53,7 @@ public class DBReserve extends ConnectDB{
     }
     
     public void addOrders(String date, String foodName, int qty) {
+        connect();
         int foodID = getFoodIDFromName(foodName);
         String sql = "INSERT INTO OOSD_ORDERS(reserveID, foodID, quantity) VALUES ( "
                 + getLastestOrderID() + ", "
@@ -58,10 +61,11 @@ public class DBReserve extends ConnectDB{
                 + qty + " )";
         db.executeQuery(sql);
         updateOrderedFood(date, foodID, qty);
+        disconnect();
     }
     
     private void updateOrderedFood(String date, int foodId, int quantity) {
-        String sql = "UPDATE OOSD_FOODBACKLOG SET ordered = ordered + " + quantity + ""
+        String sql = "UPDATE OOSD_FOODBACKLOG SET qty = qty + " + quantity + ""
                 + " WHERE foodID = " + foodId + " AND date = '" + date + "'";
         System.out.println(db.executeQuery(sql));
     }

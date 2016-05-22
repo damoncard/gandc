@@ -141,7 +141,6 @@ public class BacklogFace implements MainMenu {
         btnCheckBacklog.setText("check");
         btnCheckBacklog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                backlog.connect();
                 deleteAllRow((javax.swing.table.DefaultTableModel) tblBacklog.getModel());
                 java.util.ArrayList<java.util.HashMap> logs = null;
                 if (clickedADay) {

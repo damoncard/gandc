@@ -476,7 +476,6 @@ public class BillingFace implements MainMenu {
         tblgetTables.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (!clickedEnter) {
-                    billing.connect();
                     row = tblgetTables.getSelectedRow();
                     int total = 0;
                     ArrayList<HashMap> bills = billing.getBilling(reserveID.get(row));

@@ -15,6 +15,7 @@ public class DBCheckTable extends ConnectDB {
      * @return tableID that available in this date and time, -1 is in case that don't have available tables
      */
     public int checkAvailable(String date, String time, int chairs) {
+        connect();
         int tableId = -1;
         String innerSelect = "SELECT * FROM OOSD_RESERVES AS R WHERE R.tableID = T.tableID";
         
@@ -29,6 +30,7 @@ public class DBCheckTable extends ConnectDB {
         }
 
         tableId = Integer.parseInt(String.valueOf(table.get("tableID")));
+        disconnect();
         return tableId;
     }
 }

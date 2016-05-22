@@ -102,8 +102,6 @@ public class TableFuction extends ReserveFace {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            checkTable.connect();
-
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             date = dateFormat.format(tableface.getDate().getValue());
 
