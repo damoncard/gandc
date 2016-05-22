@@ -61,8 +61,6 @@ public class Main extends SimpleFace {
         lblClock = new JLabel();
         lblUser = new JLabel();
         menu = new CollectMainMenu();
-        
-
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {

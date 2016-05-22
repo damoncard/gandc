@@ -49,13 +49,5 @@ public class DBFood extends ConnectDB{
         disconnect();
         return String.valueOf(price.get("price"));
     }
-    
-    public int getOrdered(int foodID) {
-        connect();
-        String sql = "SELECT ordered FROM OOSD_FOODS WHERE foodID = " + foodID;
-        HashMap ordered = db.queryRow(sql);
-        disconnect();
-        return Integer.parseInt(String.valueOf(ordered.get("ordered")));
-    }
-    
+
 }

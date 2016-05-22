@@ -10,9 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import book_res.functions.utils.DBCheckTable;
+import book_res.interfaces.Main;
 import java.awt.Color;
 import java.util.ArrayList;
 import book_res.interfaces.ReserveFace;
+import com.sun.media.sound.DLSModulator;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +24,7 @@ import java.util.Calendar;
  *
  * @author Default141
  */
-public class TableFuction extends ReserveFace {
+public class TableFuction extends TableFace {
 
     DBCheckTable checkTable;
     TableFace tableface;
@@ -31,7 +33,7 @@ public class TableFuction extends ReserveFace {
     String message1 = "Avalible Table Number: ";
     String message2 = "Not Avalible";
     ArrayList<JButton> chairButtons;
-    private static Calendar dateTimeReserve;
+
     public TableFuction() {
 
         checkTable = new DBCheckTable();
@@ -39,31 +41,8 @@ public class TableFuction extends ReserveFace {
         tableface.setVisible(true);
 
         chairButtons = tableface.getChairButtons();
-        checkTable();
         checkSeat();
-    }
-    /**
-    * Get table id.
-    *@return id of table
-    **/
-    public int getTableID() {
-        return tableId;
-    }
-
-    /**
-    * Get time
-    *@return time
-    **/
-    public String getTime() {
-        return time;
-    }
-
-    /**
-    *Get date
-    *@return date
-    **/
-    public String getDate() {
-        return date;
+        checkTable();
     }
 
     /**
@@ -73,9 +52,13 @@ public class TableFuction extends ReserveFace {
         (tableface.getAddButton()).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lblTableNo.setText(tableId + "");
-                lblReserve.setText(date + " " + time);
-                //ReserveFace.init();
+                ReserveFace.lblTableNo.setText(tableId + "");
+                ReserveFace.lblReserve.setText(date + " " + time);
+                ReserveFace.date = date;
+                ReserveFace.time = time;
+                ReserveFace.idTable = tableId;
+//                System.out.println(lblTableNo.getText());
+//                System.out.println(lblReserve.getText());
                 tableface.dispose();
             } 
         });

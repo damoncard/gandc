@@ -21,7 +21,9 @@ public class LogIn {
     public boolean checkLogIn(LogFace z) {
         inUser = z.getForm();
         if (log.checkUser(inUser[0], inUser[1])) {
-            new Main().setVisible(true);
+            Main main = new Main();
+            main.setVisible(true);
+            main.setLocationRelativeTo(null);
         }
         return false;
     }

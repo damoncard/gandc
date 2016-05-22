@@ -79,18 +79,7 @@ public class ReserveFace implements MainMenu {
      
         btnDone = new javax.swing.JButton();
         food = new FoodList();
-//        btnFoodType = new JButton[]{btnSnacks, btnFoods, btnBeverages};
-//        tblMenu = new Table[]{tblFoodMenu, tblBeverageMenu};
-//        foodFunction = new FoodFunction();
     }
-//
-//    public JTable[] getTables() {
-//        return new JTable[]{tblFoodMenu, tblBeverageMenu};
-//    }
-//
-//    public JButton[] getFoodTypeBtn() {
-//        return btnFoodType;
-//    }
 
     public void init() {
         pnlTableMenu.setBackground(new java.awt.Color(204, 204, 204));
@@ -379,6 +368,7 @@ public class ReserveFace implements MainMenu {
                         reserve.insertReserving(idTable, txtName.getText(), date, time);
                         int row = tblFoodMenu.getRowCount();
                         for (int i = 0; i < row; i++) {
+                            System.out.println(String.valueOf(tblFoodMenu.getValueAt(i, 1)));
                             reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(i, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(i, 3))));
                         }
                         int row2 = tblBeverageMenu.getRowCount();
@@ -386,7 +376,7 @@ public class ReserveFace implements MainMenu {
                             reserve.addOrders(date, String.valueOf(tblBeverageMenu.getValueAt(i, 1)), Integer.parseInt(String.valueOf(tblBeverageMenu.getValueAt(i, 3))));
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
-
+                        System.err.println(e);
                     } finally {
                         javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
                     }

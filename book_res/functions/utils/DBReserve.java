@@ -25,7 +25,7 @@ public class DBReserve extends ConnectDB{
                 + tableId + ", "
                 + getLastestCustomerID()
                 + " )";
-        db.executeQuery(sql);
+        System.out.println(db.executeQuery(sql));
         disconnect();
     }
     
