@@ -61,7 +61,7 @@ public class DBReserve extends ConnectDB{
     }
     
     private void updateOrderedFood(String date, int foodId, int quantity) {
-        String sql = "UPDATE OOSD_FOODBACKLOG SET qty = qty + " + quantity + ""
+        String sql = "UPDATE OOSD_FOODBACKLOG SET ordered = ordered + " + quantity + ""
                 + " WHERE foodID = " + foodId + " AND date = '" + date + "'";
         db.executeQuery(sql);
     }
