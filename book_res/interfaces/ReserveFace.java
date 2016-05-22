@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class ReserveFace implements MainMenu {
 
@@ -37,11 +38,11 @@ public class ReserveFace implements MainMenu {
     public static JPanel pnlMenuButton;
     DBReserve reserve = new DBReserve();
     TableFuction t;
-    int idTable;
-    String date;
-    String time;
+    public static int idTable;
+    public static String date;
+    public static String time;
     FoodList food;
-  //  FoodFunction foodFunction;
+    //  FoodFunction foodFunction;
 
     public ReserveFace() {
         pnlTableMenu = new javax.swing.JPanel();
@@ -183,10 +184,7 @@ public class ReserveFace implements MainMenu {
         btnCheck.setText("Check Tables");
         btnCheck.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t = new TableFuction();
-                idTable = t.getTableID();
-                time = t.getTimE();
-                date = t.getDatE();
+                new TableFuction();
             }
         });
 
@@ -271,7 +269,7 @@ public class ReserveFace implements MainMenu {
                 System.out.println(food.getSnackList());
                 new SnackMenuButtons(food.getSnackList(), tblFoodMenu);
             }
-            
+
         });
 
         btnFoods.setText("Foods");
@@ -282,7 +280,7 @@ public class ReserveFace implements MainMenu {
             public void actionPerformed(ActionEvent e) {
                 new FoodMenuButtons(food.getFoodList(), tblFoodMenu);
             }
-            
+
         });
 
         btnBeverages.setText("Beverages");
@@ -385,16 +383,26 @@ public class ReserveFace implements MainMenu {
                     System.out.println(tblFoodMenu.getRowCount());
                     javax.swing.JOptionPane.showMessageDialog(null, "Please select orders");
                 } else {
-                    reserve.insertReserving(idTable, txtName.getText(), date, time);
-                    int row = tblFoodMenu.getRowCount();
-                    for (int i = 0; i <= row; i++) {
-                        reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(row, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(row, 2))));
+                    try {
+                        reserve.insertReserving(idTable, txtName.getText(), date, time);
+                        int row = tblFoodMenu.getRowCount();
+                        for (int i = 0; i < row; i++) {
+                            reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(i, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(i, 3))));
+                        }
+                        int row2 = tblBeverageMenu.getRowCount();
+                        for (int i = 0; i < row; i++) {
+                            reserve.addOrders(date, String.valueOf(tblBeverageMenu.getValueAt(i, 1)), Integer.parseInt(String.valueOf(tblBeverageMenu.getValueAt(i, 3))));
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+
+                    } finally {
+                        javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
                     }
-                    int row2 = tblBeverageMenu.getRowCount();
-                    for (int i = 0; i <= row; i++) {
-                        reserve.addOrders(date, String.valueOf(tblFoodMenu.getValueAt(row, 1)), Integer.parseInt(String.valueOf(tblFoodMenu.getValueAt(row, 2))));
-                    }
-                    javax.swing.JOptionPane.showMessageDialog(null, "Successfully");
+                    deleteAllRow((DefaultTableModel)tblBeverageMenu.getModel());
+                    deleteAllRow((DefaultTableModel)tblFoodMenu.getModel());
+                    lblReserve.setText("");
+                    lblTableNo.setText("");
+                    txtName.setText("");
                 }
             }
         });
@@ -454,6 +462,12 @@ public class ReserveFace implements MainMenu {
                         .addGap(13, 13, 13))
         );
 //        foodFunction.setButtons(btnFoodType, tblMenu);
+    }
+    
+    private void deleteAllRow(DefaultTableModel model) {
+        for (int row = model.getRowCount() - 1; row >= 0; row--) {
+            model.removeRow(row);
+        }
     }
 
     private void deleteSelectedRow(javax.swing.JTable tbl, javax.swing.JLabel lbl, int row) {

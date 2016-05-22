@@ -13,7 +13,6 @@ public class SnackMenuButtons extends MenuTemplate {
 
 	public SnackMenuButtons(ArrayList<HashMap<String,String>> buttons, JTable t) {
         super();
-            System.out.println(buttons);
 		for (HashMap<String, String> b : buttons) {
 			createButton(b.get("NAME"), Double.parseDouble(b.get("PRICE")), t);
 		}

@@ -61,6 +61,9 @@ public class TableFuction extends TableFace {
             public void actionPerformed(ActionEvent e) {
                 lblTableNo.setText(tableId + "");
                 lblReserve.setText(date + " " + time);
+                ReserveFace.idTable = tableId;
+                ReserveFace.date = date;
+                ReserveFace.time = time;
                 //ReserveFace.init();
                 tableface.dispose();
             }

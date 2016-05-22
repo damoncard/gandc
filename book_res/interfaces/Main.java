@@ -5,6 +5,7 @@
  */
 package book_res.interfaces;
 
+import book_res.functions.utils.ConnectDB;
 import book_res.interfaces.layout.FoodMenuButtons;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,11 +39,13 @@ public class Main extends SimpleFace {
     private JPanel menuTab;
     CollectMainMenu menu;
     private Timer timer;
+    ConnectDB db;
 
     public Main() {
         super("Restaurant", WindowConstants.EXIT_ON_CLOSE);
         menu.getReserve();
         setTheTime();
+        db = new ConnectDB();
     }
     
 
@@ -190,7 +193,7 @@ public class Main extends SimpleFace {
     }
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        //Queuing.disConnectDb();
+        db.disconnect();
     }//GEN-LAST:event_formWindowClosing
 
     private void popularButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popularButtonMouseClicked
