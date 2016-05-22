@@ -392,8 +392,8 @@ public class ReserveFace implements MainMenu {
                     }
                     deleteAllRow((DefaultTableModel) tblBeverageMenu.getModel());
                     deleteAllRow((DefaultTableModel) tblFoodMenu.getModel());
-                    lblReserve.setText("");
-                    lblTableNo.setText("");
+                    lblReserve.setText(" ");
+                    lblTableNo.setText(" ");
                     txtName.setText("");
                 }
             }

@@ -399,7 +399,9 @@ public class BillingFace implements MainMenu {
         btnDis10.setText("10%");
         btnDis10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                double total = 90 * Double.parseDouble(lblTotal.getText()) / 100;
+                //System.out.println(Comma.removeComma(lblTotal.getText()));
+                int total = 90 * Integer.parseInt(Comma.removeComma(lblTotal.getText())) / 100;
+                //System.out.println(total);
                 lblTotal.setText(Comma.putComma(total + ""));
             }
         });
@@ -408,7 +410,7 @@ public class BillingFace implements MainMenu {
         btnDis20.setText("20%");
         btnDis20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                double total = 80 * Double.parseDouble(lblTotal.getText()) / 100;
+                int total = 80 * Integer.parseInt(Comma.removeComma(lblTotal.getText())) / 100;
                 lblTotal.setText(Comma.putComma(total + ""));
             }
         });
